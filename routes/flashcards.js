@@ -1,8 +1,18 @@
-// bring in router
-
-// all user protected routes
-// add, index, edit, delete
+const router = require('express').Router();
+const flashcardCtrl = require('../controllers/resources');
 
 
+router.use(require('../config/auth'));
+router.get('/', checkAuth, flashcardCtrl.index)
+router.post('/', checkAuth, flashcardCtrl.create)
+router.put('/:id', checkAuth, flashcardCtrl.update)
+router.delete('/:id', checkAuth, flashcardCtrl.deleteCard)
 
-// export router
+
+
+function checkAuth(req, res, next) {
+	if (req.user) return next();
+	return res.status(401).json({msg: 'Not Authorized'});
+}
+
+module.exports = router;
