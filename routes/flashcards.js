@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const flashcardCtrl = require('../controllers/resources');
+const flashcardCtrl = require('../controllers/flashcards');
 
 
 router.use(require('../config/auth'));
