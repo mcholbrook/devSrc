@@ -1,15 +1,28 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
+const Schema = mongoose.Schema
 
 const SALT_ROUNDS = 6;
 
-const userSchema = new mongoose.Schema({
-  name: String,
+const flashCardSchema = new Schema({
+  frontSide: String,
+  backSide: String,
+}, {timestamps:true})
+
+const userSchema = new Schema({
+  name: {type: String, required: true},
   email: {type: String, required: true, lowercase: true, unique: true},
-  password: String
+  password: String,
+  avatar: {type: String, default: ''},
+  github: String,
+  linkedIn: String,
+  website: String,
+  savedItems: [{ type: Schema.Types.ObjectId, ref: 'Resource'}],
+  flashcards: [flashCardSchema]
 }, {
   timestamps: true
 });
+
 
 userSchema.set('toJSON', {
   transform: function(doc, ret) {
