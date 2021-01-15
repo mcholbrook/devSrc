@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from '../Users/Users'
 import "./App.css";
+import Chat from '../Chat/Chat'
 
 class App extends Component {
   state = {
@@ -62,6 +63,12 @@ class App extends Component {
           render={() =>
             user ? <Users /> : <Redirect to="/login" />
           }
+        />
+        <Route 
+          exact path="/chat"
+          render={() => (
+            <Chat />
+          )}
         />
       </>
     );
