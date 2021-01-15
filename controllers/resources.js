@@ -3,8 +3,8 @@ const Resource = require('../models/resource')
 module.exports = {
     create,
     search,
-    update,
-    delete: deleteResource,
+    updateResource,
+    deleteResource,
     deleteFromSaved,
     randomResources,
 
@@ -45,7 +45,7 @@ function randomResources(req, res) {
 }
 
 // Updateing resource for admins
-function update(req, res) {
+function updateResource(req, res) {
     Resource.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(resource => {res.json(resource)})
     .catch(err => {res.json(err)})
