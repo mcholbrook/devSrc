@@ -5,8 +5,8 @@ const Schema = mongoose.Schema
 const SALT_ROUNDS = 6;
 
 const flashCardSchema = new Schema({
-  question: String,
-  answer: String,
+  frontSide: String,
+  backSide: String,
 }, {timestamps:true})
 
 const userSchema = new Schema({
