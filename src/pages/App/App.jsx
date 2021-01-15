@@ -70,6 +70,12 @@ class App extends Component {
             <Chat />
           )}
         />
+         <Route 
+          exact path="/myNotebook"
+          render={() => (
+            <AddResource />
+          )}
+        />
       </>
     );
   }
