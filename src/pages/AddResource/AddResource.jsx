@@ -45,7 +45,7 @@ class AddResource extends Component {
         const formData = {...this.state.formData, [e.target.name]: e.target.value}
         this.setState({
             formData,
-            invalidForm: !this.formRef.current.checkvalidity()
+            invalidForm: !this.formRef.current.checkValidity()
         })
     }
 
@@ -58,19 +58,19 @@ class AddResource extends Component {
 					<form className='col s12' ref={this.formRef} onSubmit={this.handleSubmit}>
 						<div className='row'>
 							<div className='input-field col s12'>
-								<input name='title' id='resource_title' type='text' className='active' value={this.state.formData.name} onChange={this.handleChange} required />
+								<input name='title' id='resource_title' type='text' className='active' value={this.state.formData.title} onChange={this.handleChange} required />
 								<label htmlFor='resource_title'>Title:</label>
 							</div>
 						</div>
 						<div className='row'>
 							<div className='input-field col s12'>
-								<input name='description' id='description' type='text' className='active' value={this.state.formData.cast} onChange={this.handleChange} required/>
+								<input name='description' id='description' type='text' className='active' value={this.state.formData.description} onChange={this.handleChange} required/>
 								<label htmlFor='description'>Description:</label>
 							</div>
 						</div>
 						<div className='row'>
 							<div className='input-field col s12'>
-								<input name='url' id='resource_url' type='text' className='active' value={this.state.formData.description} onChange={this.handleChange}/>
+								<input name='url' id='resource_url' type='text' className='active' value={this.state.formData.url} onChange={this.handleChange}/>
 								<label htmlFor='rescource_url'>Link</label>
 							</div>
 						</div>
@@ -129,8 +129,8 @@ class AddResource extends Component {
 								className='btn red'
 								disabled={this.state.invalidForm}
 						>
-							<i className='material-icons left'>add</i>
-							Add Movie
+							<i className='material-icons left'></i>
+							Submit Resource
 						</button>                           
 					</form>
 				</div>	

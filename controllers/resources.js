@@ -13,6 +13,9 @@ module.exports = {
 function create(req, res) {
   req.body.creator = req.user._id;
   Resource.create(req.body)
+  .then((resource) => {
+      req.user.savedItems.push(resource._id)
+  })
     .then((resource) => {
       res.json(resource);
     })

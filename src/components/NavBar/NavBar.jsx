@@ -20,6 +20,7 @@ const NavBar = ({ user, handleLogout }) => {
             <ul id="nav-mobile" className="right">
               <li><Link to="/login" className="nav-link">Log In</Link></li>
               <li><Link to="/signup" className="nav-link">Sign Up</Link></li>
+              
             </ul>
           </div>
         </nav>
