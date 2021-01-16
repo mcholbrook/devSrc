@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './NavBar.css'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper teal lighten-2" >
             <ul id="nav-mobile" className="left hide-on-med-and-down">
               <li className="nav-link">Welcome, {user.name}</li>
             </ul>
