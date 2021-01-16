@@ -11,3 +11,13 @@ PSEUDO CODE:
             - Create submit button to render notes on the same page
 
 */
+
+import React from 'react'
+
+const ShowResource = () => {
+    return (
+        <h1>Resource!</h1>
+    );
+}
+ 
+export default ShowResource;
