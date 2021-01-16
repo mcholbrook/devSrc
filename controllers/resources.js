@@ -9,6 +9,7 @@ module.exports = {
   deleteFromSaved,
   randomResources,
   index,
+  myResources
 };
 
 // Create a resource from user profile
@@ -108,4 +109,13 @@ function deleteFromSaved(req, res) {
         res.json(err);
       });
   });
+}
+
+// My saved Resources
+function myResources(req, res) {
+    User.findById(req.params.id)
+    .populate('savedItems')
+    .then((user) => {
+        res.json(user)
+    })
 }
