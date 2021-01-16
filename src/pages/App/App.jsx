@@ -13,17 +13,20 @@ import * as flashCardAPI from '../../services/flashCardApi'
 import ResourceList from '../../components/ResourceList/ResourceList'
 import FlashCardList from '../FlashCardList/FlashCardList'
 
+
 class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
-    flashCards: []
+    flashCards: [],
+    myResources: []
 
   };
 
   async componentDidMount() {
-    const resources = await resourceAPI.getAll()                                                              
-    this.setState({resources})                
+    // const resources = await resourceAPI.getAll()
+    const myResources = await resourceAPI.getMyResources(this.state.user)
+    this.setState({myResources: myResources.savedItems})                
   };
 
   handleLogout = () => {
@@ -108,7 +111,7 @@ class App extends Component {
           render={() => (
             <AddResource
             handleAddResource = {this.handleAddResource}
-            resources={this.state.resources}
+            myResources={this.state.myResources}
             user={this.state.user}/>
           )}
         />

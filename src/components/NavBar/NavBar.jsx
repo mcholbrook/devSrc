@@ -1,33 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './NavBar.css'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
         <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
+          <div className="nav-wrapper teal lighten-2" >
+            <ul id="nav-mobile" className="left hide-on-med-and-down">
               <li className="nav-link">Welcome, {user.name}</li>
             </ul>
-            <Link to="/myNotebook" className="nav-link">
-              MyNotebook
-            </Link>
-            <Link to="/search" className="nav-link">
-              Search
-            </Link>
-            <Link to="/studyBuddy" className="nav-link">
-              Study Buddy
-            </Link>
-            <Link to="/chat" className="nav-link">
-              Chat
-            </Link>
-            <Link to="/myProfile" className="nav-link">
-              Profile
-            </Link>
-            <Link to=" " className="nav-link" onClick={handleLogout}>
-              Log Out
-            </Link>
+            <ul className="right hide-on-med-and-down">
+            <li>
+              <a className="active" href="/myNotebook">MyNotebook</a>
+            </li>
+            <li>
+              <a className="active" href="/search">Search</a>
+            </li>
+            <li>
+              <a className="active" href="/studyBuddy">Study Buddy</a>
+            </li>
+            <li>
+              <a className="active" href="/chat">Chat</a>
+            </li>
+            <li>
+              <a className="active" href="/myProfile">Profile</a>
+            </li>
+            <li className="right">
+              <a className="active" href=" " onClick={handleLogout}>Log Out</a>
+            </li>
+            </ul>
           </div>
         </nav>
       ) : (
