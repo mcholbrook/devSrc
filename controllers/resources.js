@@ -12,18 +12,22 @@ module.exports = {
 
 // Create a resource from user profile
 function create(req, res) {
-  req.body.creator = req.user._id;
-  Resource.create(req.body)
-  .then((resource) => {
-      req.user.savedItems.push(resource._id)
-  })
+    req.body.creator = req.user._id;
+    Resource.create(req.body)
     .then((resource) => {
-      res.json(resource);
+        User.findById(req.user._id)
+        .then((user) => {
+          user.savedItems.push(resource._id)
+          user.save()
+        }) 
     })
-    .catch((err) => {
-      res.json(err);
-    });
-}
+      .then((resource) => {
+        res.json(resource);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  }
 
 function index(req, res) {
     Resource.find({})
