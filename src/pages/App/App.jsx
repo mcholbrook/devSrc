@@ -15,16 +15,17 @@ import ResourceList from '../../components/ResourceList/ResourceList'
 class App extends Component {
   state = {
     user: authService.getUser(),
-    resources: []
+    resources: [],
+
   };
 
   async componentDidMount() {
-    const resources = await resourceAPI.getAll()
-    this.setState({resources})
+    const resources = await resourceAPI.getAll()                                                              
+    this.setState({resources})                
   };
 
   handleLogout = () => {
-    authService.logout();
+    authService.logout();                               
     this.setState({ user: null });
     this.props.history.push("/");
   };
@@ -35,12 +36,11 @@ class App extends Component {
 
   handleAddResource = async (newResourceData) => {
     const newResource = await resourceAPI.create(newResourceData)
-    newResource.creator = {name: this.state.user.name, _id: this.state.user._id}
     this.setState (
       (state) => ({
-        resources: [...state.resources, newResource]
+        resources: [...state.resources, newResource],
       }),
-      () => this.props.history.push('/resources')
+      () => this.props.history.push('/myNotebook')
     )
   }
 

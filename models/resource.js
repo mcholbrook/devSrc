@@ -8,9 +8,9 @@ const noteSchema = new Schema({
 }, {timestamps:true})
 
 const resourceSchema = new Schema({
-  title: {type: String, required: true},
-  description: {type: String, required: true},
-  url: {type: String, required: true},
+  title: {type: String},
+  description: {type: String},
+  url: {type: String},
   tag: String,
   creatorName: String,
   creator: {type: Schema.Types.ObjectId, ref:'User'},
