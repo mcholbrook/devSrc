@@ -7,6 +7,7 @@ const SALT_ROUNDS = 6;
 const flashCardSchema = new Schema({
   frontSide: String,
   backSide: String,
+  tag: String
 }, {timestamps:true})
 
 const userSchema = new Schema({
@@ -18,7 +19,7 @@ const userSchema = new Schema({
   linkedIn: String,
   website: String,
   savedItems: [{ type: Schema.Types.ObjectId, ref: 'Resource'}],
-  flashcards: [flashCardSchema]
+  flashCards: [flashCardSchema]
 }, {
   timestamps: true
 });

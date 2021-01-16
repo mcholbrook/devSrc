@@ -1,3 +1,22 @@
+import React, { Component } from 'react';
+import FlashCardStack from '../../components/FlashCardStack/FlashCardStack'
+
+class FlashCardStackShow extends Component {
+    
+    render() { 
+        return ( 
+        <>
+        <div>
+            <FlashCardStack />
+        </div>
+        </>
+         );
+    }
+}
+ 
+export default FlashCardStackShow;
+
+
 // import react
 // import styling
 
