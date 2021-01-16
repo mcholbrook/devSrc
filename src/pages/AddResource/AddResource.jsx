@@ -21,6 +21,7 @@ PSEUDO CODE:
 - Write the route in app.js
 */
 
+
 import React, {Component} from 'react'
 
 class AddResource extends Component {
@@ -139,7 +140,7 @@ class AddResource extends Component {
 				</div>	
             </>
         );
-    }
+   
 }
  
 export default AddResource;

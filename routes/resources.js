@@ -8,7 +8,7 @@ router.get('/random', checkAuth, resourcesCtrl.randomResources)
 router.post('/search', checkAuth, resourcesCtrl.search);
 router.put('/:id', checkAuth, resourcesCtrl.deleteFromSaved);
 
-// Admin Routes
+ // Admin Routes
 router.put('/:id', checkAuth, resourcesCtrl.updateResource);
 router.delete('/:id', checkAuth, resourcesCtrl.deleteResource);
 
