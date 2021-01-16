@@ -1,4 +1,5 @@
 const Resource = require("../models/resource");
+const User = require("../models/user");
 
 module.exports = {
   create,
