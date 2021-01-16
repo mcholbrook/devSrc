@@ -141,6 +141,7 @@ class AddResource extends Component {
             </>
         );
    
+	}
 }
  
 export default AddResource;
