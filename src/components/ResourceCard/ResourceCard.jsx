@@ -16,9 +16,14 @@ PSEUDO CODE:
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const ResourceCard = (props) => {
+const ResourceCard = ({resource, handleDeleteResource}) => {
     return (
-        <h1>{props.resource.title}</h1>
+        <>
+        <h1>{resource.title}</h1>
+        <a href={resource.url}>Go to Resource</a>
+        <a href="#">Details</a>
+        <button type='submit' onclick={() =>  handleDeleteResource()}>Delete</button>
+        </>
     );
 }
  

@@ -23,8 +23,8 @@ PSEUDO CODE:
 
 
 import React, {Component} from 'react'
-import ResourceCard from '../../components/ResourceCard/ResourceCard'
 import ResourceList from '../../components/ResourceList/ResourceList'
+import * as resourceAPI from '../../services/resourceApi'
 
 class AddResource extends Component {
     state = {
@@ -52,6 +52,13 @@ class AddResource extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         })
     }
+
+    handleDeleteResource = async (id) => {
+        await resourceAPI.deleteFromSaved(id)
+        this.setState((state) => ({
+          resources: state.resources.filter((r) => r._id !== id)
+        }), () => this.props.history.push('/myNotebook'))
+      }
 
 
     render() { 
@@ -139,6 +146,7 @@ class AddResource extends Component {
 				</div>
                 <ResourceList 
                     resources={this.props.resources}
+                    handleDeleteResource={this. handleDeleteResource}
                 />	
             </>
         );
