@@ -12,22 +12,22 @@ const NavBar = ({ user, handleLogout }) => {
             </ul>
             <ul className="right hide-on-med-and-down">
             <li>
-              <a class="active" href="/myNotebook">MyNotebook</a>
+              <a className="active" href="/myNotebook">MyNotebook</a>
             </li>
             <li>
-              <a class="active" href="/search">Search</a>
+              <a className="active" href="/search">Search</a>
             </li>
             <li>
-              <a class="active" href="/studyBuddy">Study Buddy</a>
+              <a className="active" href="/studyBuddy">Study Buddy</a>
             </li>
             <li>
-              <a class="active" href="/chat">Chat</a>
+              <a className="active" href="/chat">Chat</a>
             </li>
             <li>
-              <a class="active" href="/myProfile">Profile</a>
+              <a className="active" href="/myProfile">Profile</a>
             </li>
-            <li>
-              <a class="active" href=" ">Log Out</a>
+            <li className="right">
+              <a className="active" href=" " onClick={handleLogout}>Log Out</a>
             </li>
             </ul>
           </div>
