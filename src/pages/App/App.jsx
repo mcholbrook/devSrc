@@ -9,9 +9,13 @@ import "./App.css";
 import Chat from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 
+import * as resourceAPI from '../../services/resourceApi'
+
+
 class App extends Component {
   state = {
     user: authService.getUser(),
+    resources: []
   };
 
   handleLogout = () => {
@@ -23,6 +27,17 @@ class App extends Component {
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() });
   };
+
+  handleAddResource = async (newResourceData) => {
+    const newResource = await resourceAPI.create(newResourceData)
+    newResource.creator = {name: this.state.user.name, _id: this.state.user._id}
+    this.setState (
+      (state) => ({
+        resources: [...state.resources, newResource]
+      }),
+      () => this.props.history.push('/resources')
+    )
+  }
 
   render() {
     const { user } = this.state
@@ -74,7 +89,9 @@ class App extends Component {
          <Route 
           exact path="/myNotebook"
           render={() => (
-            <AddResource />
+            <AddResource
+            handleAddResource = {this.handleAddResource}
+            user={this.state.user}/>
           )}
         />
       </>
