@@ -7,6 +7,7 @@ import authService from "../../services/authService";
 import Users from '../Users/Users'
 import "./App.css";
 import Chat from '../Chat/Chat'
+import AddResource from '../AddResource/AddResource'
 
 class App extends Component {
   state = {

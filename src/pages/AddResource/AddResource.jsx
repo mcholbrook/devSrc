@@ -20,3 +20,17 @@ PSEUDO CODE:
         - Create submit button
 - Write the route in app.js
 */
+
+import React, { Component } from 'react';
+
+class AddResource extends Component {
+  state = {  }
+  render() { 
+    return ( 
+      <>
+      </>
+     );
+  }
+}
+ 
+export default AddResource;
