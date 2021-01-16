@@ -21,6 +21,7 @@ PSEUDO CODE:
 - Write the route in app.js
 */
 
+
 import React, {Component} from 'react'
 import ResourceCard from '../../components/ResourceCard/ResourceCard'
 
@@ -136,7 +137,7 @@ class AddResource extends Component {
 				</div>	
             </>
         );
-    }
+   
 }
  
 export default AddResource;
