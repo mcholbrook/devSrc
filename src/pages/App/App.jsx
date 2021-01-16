@@ -44,6 +44,10 @@ class App extends Component {
     )
   }
 
+ 
+
+
+
   render() {
     const { user } = this.state
     return (
@@ -96,6 +100,7 @@ class App extends Component {
           render={() => (
             <AddResource
             handleAddResource = {this.handleAddResource}
+           
             resources={this.state.resources}
             user={this.state.user}/>
           )}
