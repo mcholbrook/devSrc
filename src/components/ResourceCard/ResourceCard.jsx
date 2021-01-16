@@ -16,13 +16,14 @@ PSEUDO CODE:
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const ResourceCard = ({resource, handleDeleteResource}) => {
+const ResourceCard = ({resource, handleDeleteResource, user}) => {
+    
     return (
         <>
         <h1>{resource.title}</h1>
         <a href={resource.url}>Go to Resource</a>
         <a href="#">Details</a>
-        <button type='submit' onclick={() =>  handleDeleteResource()}>Delete</button>
+        <button type='submit' onClick={(resource) => handleDeleteResource(resource)}>Delete</button>
         </>
     );
 }

@@ -3,6 +3,7 @@ const resourcesCtrl = require('../controllers/resources');
 
 // Protected Routes
 router.get('/', resourcesCtrl.index)
+router.get('/:id/myResources', resourcesCtrl.myResources)
 router.use(require('../config/auth'));
 router.post('/', checkAuth, resourcesCtrl.create);
 router.get('/random', checkAuth, resourcesCtrl.randomResources)

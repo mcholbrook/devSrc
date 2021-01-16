@@ -1,4 +1,5 @@
 const Resource = require("../models/resource");
+const User = require("../models/user");
 
 module.exports = {
   create,
@@ -7,34 +8,37 @@ module.exports = {
   deleteResource,
   deleteFromSaved,
   randomResources,
-  index
+  index,
+  myResources
 };
 
 // Create a resource from user profile
 function create(req, res) {
-    req.body.creator = req.user._id;
-    Resource.create(req.body)
+  req.body.creator = req.user._id;
+  Resource.create(req.body)
     .then((resource) => {
-        User.findById(req.user._id)
-        .then((user) => {
-          user.savedItems.push(resource._id)
-          user.save()
-        }) 
-    })
-      .then((resource) => {
-        res.json(resource);
-      })
-      .catch((err) => {
-        res.json(err);
+      User.findById(req.user._id).then((user) => {
+        user.savedItems.push(resource._id);
+        user.save();
+        console.log(user)
       });
-  }
+    })
+    .then((resource) => {
+      res.json(resource);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+}
 
 function index(req, res) {
-    Resource.find({})
-    .then((resources) => {res.json(resources)})
+  Resource.find({})
+    .then((resources) => {
+      res.json(resources);
+    })
     .catch((err) => {
-        res.json(err);
-      });
+      res.json(err);
+    });
 }
 
 // Search a resource by text in the search bar
@@ -46,7 +50,7 @@ function search(req, res) {
   });
   Resource.find({
     $text: {
-      $search: `${req.body}`,
+      $search: `${body}`,
     },
   })
     .then((resource) => {
@@ -92,14 +96,26 @@ function deleteResource(req, res) {
 
 // User can delete from collection
 function deleteFromSaved(req, res) {
-  let idx = req.user.savedItems.findIndex((r) => r._id === req.params.id);
-  req.user.savedItems.splice(idx, 1);
-  req.user
-    .save()
-    .then(() => {
-      res.json();
+  User.findById(req.user._id).then((user) => {
+    let idx = user.savedItems.findIndex((r) => r._id === req.params.id);
+    console.log(user, user.savedItems)
+    user.savedItems.splice(idx, 1);
+    user
+      .save()
+      .then(() => {
+        res.json();
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  });
+}
+
+// My saved Resources
+function myResources(req, res) {
+    User.findById(req.params.id)
+    .populate('savedItems')
+    .then((user) => {
+        res.json(user)
     })
-    .catch((err) => {
-      res.json(err);
-    });
 }

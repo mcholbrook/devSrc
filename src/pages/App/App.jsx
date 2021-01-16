@@ -9,19 +9,22 @@ import "./App.css";
 import Chat from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 import * as resourceAPI from '../../services/resourceApi'
-import ResourceList from '../../components/ResourceList/ResourceList'
+
+
 
 
 class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
+    myResources: []
 
   };
 
   async componentDidMount() {
-    const resources = await resourceAPI.getAll()                                                              
-    this.setState({resources})                
+    // const resources = await resourceAPI.getAll()
+    const myResources = await resourceAPI.getMyResources(this.state.user)
+    this.setState({myResources: myResources.savedItems})                
   };
 
   handleLogout = () => {
@@ -100,8 +103,7 @@ class App extends Component {
           render={() => (
             <AddResource
             handleAddResource = {this.handleAddResource}
-           
-            resources={this.state.resources}
+            myResources={this.state.myResources}
             user={this.state.user}/>
           )}
         />
