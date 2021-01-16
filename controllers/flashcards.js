@@ -14,10 +14,21 @@ module.exports = {
 }
 
 function index(req, res){
-
+  User.findById(req.user._id)
+  .populate('flashCards')
+  .then((flashCards) => {res.json(flashCards)})
+  .catch((err) => {res.json(err)})
 }
 
 function create(req, res){
+  const flashCard = req.body
+  User.findById(req.user._id)
+  .then(user => {
+    user.flashCards.push(flashCard)
+    user.save()
+  })
+  .then((user) => res.json(user))
+
 
 }
 

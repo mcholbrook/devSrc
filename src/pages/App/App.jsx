@@ -9,13 +9,15 @@ import "./App.css";
 import Chat from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 import * as resourceAPI from '../../services/resourceApi'
+import * as flashCardAPI from '../../services/flashCardApi'
 import ResourceList from '../../components/ResourceList/ResourceList'
-
+import FlashCardList from '../FlashCardList/FlashCardList'
 
 class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
+    flashCards: []
 
   };
 
@@ -41,6 +43,16 @@ class App extends Component {
         resources: [...state.resources, newResource],
       }),
       () => this.props.history.push('/myNotebook')
+    )
+  }
+
+  handleAddFlashCard = async (newFlashCardData) => {
+    const newFlashCard = await flashCardAPI.create(newFlashCardData)
+    this.setState (
+      (state) => ({
+        flashCards: [newFlashCard.flashCards],
+      }),
+      () => this.props.history.push('/studyBuddy')
     )
   }
 
@@ -98,6 +110,16 @@ class App extends Component {
             handleAddResource = {this.handleAddResource}
             resources={this.state.resources}
             user={this.state.user}/>
+          )}
+        />
+        <Route 
+          exact path="/studyBuddy"
+          render={() => (
+            <FlashCardList
+              flashCards = {this.state.flashCards}
+              handleAddFlashCard = {this.handleAddFlashCard}
+              user= {this.state.user}
+              />
           )}
         />
         {/* <Route 

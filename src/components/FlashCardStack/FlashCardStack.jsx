@@ -1,3 +1,27 @@
+import React, { Component } from 'react';
+import FlashCard from '../FlashCard/FlashCard'
+
+const FlashCardStack = (props) => {
+        return ( 
+            <>
+            <h1>Flash Cards</h1>
+            <div className='flashCardStack'>
+                {props.flashCards.map(flashcard => (
+                    <FlashCard 
+                        flashcard={flashcard}
+                        user={props.user}
+                        key={flashcard._id}
+                    />
+                    
+                ))}
+                </div>
+            </>
+         );
+}
+
+ 
+export default FlashCardStack;
+
 // import react
 // import styling
 

@@ -19,7 +19,7 @@ const userSchema = new Schema({
   linkedIn: String,
   website: String,
   savedItems: [{ type: Schema.Types.ObjectId, ref: 'Resource'}],
-  flashcards: [flashCardSchema]
+  flashCards: [flashCardSchema]
 }, {
   timestamps: true
 });
