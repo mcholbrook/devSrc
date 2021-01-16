@@ -230,7 +230,10 @@ class AddResource extends Component {
             </button>
           </form>
         </div>
-        <ResourceList resources={this.props.resources} />
+		<ResourceList 
+			myResources={this.props.myResources}
+			handleDeleteResource= {this.handleDeleteResource}
+			user= {this.props.user} />
       </>
     );
   }
