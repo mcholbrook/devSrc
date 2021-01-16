@@ -100,7 +100,6 @@ class App extends Component {
           render={() => (
             <AddResource
             handleAddResource = {this.handleAddResource}
-           
             resources={this.state.resources}
             user={this.state.user}/>
           )}

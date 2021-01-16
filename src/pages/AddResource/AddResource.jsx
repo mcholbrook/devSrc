@@ -146,7 +146,8 @@ class AddResource extends Component {
 				</div>
                 <ResourceList 
                     resources={this.props.resources}
-                    handleDeleteResource={this. handleDeleteResource}
+                    user={this.props.user}
+                    handleDeleteResource={this.handleDeleteResource}
                 />	
             </>
         );

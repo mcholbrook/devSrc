@@ -6,7 +6,8 @@ const ResourceList = (props) => {
     <>
       <div className="saved-resources">
         {props.resources.map(resource => (
-          <ResourceCard 
+          <ResourceCard
+          handleDeleteResource={props.handleDeleteResource} 
           resource={resource}
           user={props.user}
           key={resource._id} />
