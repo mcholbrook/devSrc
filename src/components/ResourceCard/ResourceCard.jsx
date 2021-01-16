@@ -12,3 +12,14 @@ PSEUDO CODE:
         - set onClick event for upvote function which should be passed as props
         - pass specific resource id
 */
+
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const ResourceCard = (props) => {
+    return (
+        <h1>{props.resource.title}</h1>
+    );
+}
+ 
+export default ResourceCard;

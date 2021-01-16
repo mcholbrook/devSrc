@@ -23,6 +23,8 @@ PSEUDO CODE:
 
 
 import React, {Component} from 'react'
+import ResourceCard from '../../components/ResourceCard/ResourceCard'
+import ResourceList from '../../components/ResourceList/ResourceList'
 
 class AddResource extends Component {
     state = {
@@ -32,7 +34,8 @@ class AddResource extends Component {
             description: '',
             url: '',
             tag: ''
-        }
+        },
+        resources: []
     }
 
     formRef = React.createRef();
@@ -49,7 +52,6 @@ class AddResource extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         })
     }
-
 
 
     render() { 
@@ -134,10 +136,10 @@ class AddResource extends Component {
 							Submit Resource
 						</button>                           
 					</form>
-                    <div className='saved-resources'>
-                        
-                    </div>
-				</div>	
+				</div>
+                <ResourceList 
+                    resources={this.props.resources}
+                />	
             </>
         );
    

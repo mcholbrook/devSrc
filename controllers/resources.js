@@ -7,6 +7,7 @@ module.exports = {
   deleteResource,
   deleteFromSaved,
   randomResources,
+  index
 };
 
 // Create a resource from user profile
@@ -22,6 +23,14 @@ function create(req, res) {
     .catch((err) => {
       res.json(err);
     });
+}
+
+function index(req, res) {
+    Resource.find({})
+    .then((resources) => {res.json(resources)})
+    .catch((err) => {
+        res.json(err);
+      });
 }
 
 // Search a resource by text in the search bar

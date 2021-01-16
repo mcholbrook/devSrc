@@ -2,6 +2,7 @@ const router = require('express').Router();
 const resourcesCtrl = require('../controllers/resources');
 
 // Protected Routes
+router.get('/', resourcesCtrl.index)
 router.use(require('../config/auth'));
 router.post('/', checkAuth, resourcesCtrl.create);
 router.get('/random', checkAuth, resourcesCtrl.randomResources)
