@@ -16,9 +16,9 @@ PSEUDO CODE:
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const ResourceCard = (resource) => {
-    return (  
-        <h1>{resource.title}</h1>
+const ResourceCard = (props) => {
+    return (
+        <h1>{props.resource.title}</h1>
     );
 }
  

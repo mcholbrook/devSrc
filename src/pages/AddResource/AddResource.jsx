@@ -24,6 +24,7 @@ PSEUDO CODE:
 
 import React, {Component} from 'react'
 import ResourceCard from '../../components/ResourceCard/ResourceCard'
+import ResourceList from '../../components/ResourceList/ResourceList'
 
 class AddResource extends Component {
     state = {
@@ -51,6 +52,7 @@ class AddResource extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         })
     }
+
 
     render() { 
         return (
@@ -134,7 +136,10 @@ class AddResource extends Component {
 							Submit Resource
 						</button>                           
 					</form>
-				</div>	
+				</div>
+                <ResourceList 
+                    resources={this.props.resources}
+                />	
             </>
         );
    

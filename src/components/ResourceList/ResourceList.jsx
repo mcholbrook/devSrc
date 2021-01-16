@@ -1,14 +1,14 @@
 import React from "react";
 import ResourceCard from "../../components/ResourceCard/ResourceCard";
 
-const ResourceList = (user, resources) => {
+const ResourceList = (props) => {
   return (
     <>
       <div className="saved-resources">
-        {resources.map(resource => (
+        {props.resources.map(resource => (
           <ResourceCard 
           resource={resource}
-          user={user}
+          user={props.user}
           key={resource._id} />
         ))}
       </div>
