@@ -16,7 +16,7 @@ const NavBar = ({ user, handleLogout }) => {
             <Link to="/search" className="nav-link">
               Search
             </Link>
-            <Link to="/flashcards" className="nav-link">
+            <Link to="/studyBuddy" className="nav-link">
               Study Buddy
             </Link>
             <Link to="/chat" className="nav-link">
