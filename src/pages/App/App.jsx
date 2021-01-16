@@ -9,6 +9,7 @@ import "./App.css";
 import Chat from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 import * as resourceAPI from '../../services/resourceApi'
+import ResourceList from '../../components/ResourceList/ResourceList'
 
 class App extends Component {
   state = {
@@ -91,6 +92,14 @@ class App extends Component {
             handleAddResource = {this.handleAddResource}
             user={this.state.user}/>
           )}
+        />
+        <Route 
+          exact path='/myNotebook'
+          render={() => 
+          <ResourceList
+            user={this.state.user}
+          />
+          }
         />
       </>
     );
