@@ -13,26 +13,32 @@ PSEUDO CODE:
         - pass specific resource id
 */
 
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const ResourceCard = ({resource, handleDeleteResource, user}) => {
-    
-    return (
-        <>
-        <h1>{resource.title}</h1>
-        <a href={resource.url}>Go to Resource</a>
-        <p>
-        <Link to={{
-            pathname: '/:id/details',
-            resource: {resource}
-        }}>
-            Details
+const ResourceCard = ({ resource, handleDeleteResource, user }) => {
+  return (
+    <>
+      <h1>{resource.title}</h1>
+      <a href={resource.url}>Go to Resource</a>
+      <p>
+        <Link
+          to={{
+            pathname: "/details",
+            state: { resource },
+          }}
+        >
+          Details
         </Link>
-        </p>
-        <button type='submit' onClick={(resource) => handleDeleteResource(resource)}>Delete</button>
-        </>
-    );
-}
- 
+      </p>
+      <button
+        type="submit"
+        onClick={(resource) => handleDeleteResource(resource)}
+      >
+        Delete
+      </button>
+    </>
+  );
+};
+
 export default ResourceCard;

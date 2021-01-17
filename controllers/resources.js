@@ -10,7 +10,6 @@ module.exports = {
   randomResources,
   index,
   myResources,
-  getOneResource
 };
 
 // Create a resource from user profile
@@ -21,7 +20,7 @@ function create(req, res) {
       User.findById(req.user._id).then((user) => {
         user.savedItems.push(resource._id);
         user.save();
-        console.log(user)
+        console.log(user);
       });
     })
     .then((resource) => {
@@ -99,7 +98,7 @@ function deleteResource(req, res) {
 function deleteFromSaved(req, res) {
   User.findById(req.user._id).then((user) => {
     let idx = user.savedItems.findIndex((r) => r._id === req.params.id);
-    console.log(user, user.savedItems)
+    console.log(user, user.savedItems);
     user.savedItems.splice(idx, 1);
     user
       .save()
@@ -114,17 +113,9 @@ function deleteFromSaved(req, res) {
 
 // My saved Resources
 function myResources(req, res) {
-    User.findById(req.params.id)
-    .populate('savedItems')
+  User.findById(req.params.id)
+    .populate("savedItems")
     .then((user) => {
-        res.json(user)
-    })
-}
-
-// Show details of a single resource
-function getOneResource(req,res) {
-    Resource.findById(req.params.id)
-    .then((resource) => {
-        res.json(resource)
-    })
+      res.json(user);
+    });
 }
