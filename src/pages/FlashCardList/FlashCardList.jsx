@@ -1,3 +1,29 @@
+
+import React, { Component } from 'react';
+import FlashCardStack from '../../components/FlashCardStack/FlashCardStack'
+import AddFlashcard from '../../components/AddFlashcard/AddFlashcard'
+
+class FlashCardList extends Component {
+    
+    render() { 
+        return ( 
+        <>
+        <div className='flashCardStackShow'>
+            <FlashCardStack 
+                flashCards={this.props.flashCards}
+            />
+        </div>
+            <AddFlashcard 
+                handleAddFlashCard={this.props.handleAddFlashCard}
+            />
+        </>
+         );
+    }
+}
+ 
+export default FlashCardList;
+
+
 // import react
 // import styling
 
