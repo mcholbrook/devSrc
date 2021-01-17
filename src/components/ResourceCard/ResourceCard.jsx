@@ -23,7 +23,10 @@ const ResourceCard = ({resource, handleDeleteResource, user}) => {
         <h1>{resource.title}</h1>
         <a href={resource.url}>Go to Resource</a>
         <p>
-        <Link to='/details'>
+        <Link to={{
+            pathname: '/:id/details',
+            resource: {resource}
+        }}>
             Details
         </Link>
         </p>
