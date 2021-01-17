@@ -119,10 +119,12 @@ class App extends Component {
             user={this.state.user}/>
           )}
         />
-        <Route 
-          exact path='/details'
-          render={() => (
-            <ShowResource />
+         <Route 
+          exact path='/:id/details'
+          render={({ location }) => (
+            <ShowResource
+              location={location}
+            />
           )}
         />
         <Route

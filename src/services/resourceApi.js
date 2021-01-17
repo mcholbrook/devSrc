@@ -29,3 +29,9 @@ export function getMyResources(user) {
     .then(res => res.json())
 }
 
+export function getOneResource(resource) {
+    return fetch(`${BASE_URL}${resource._id}/details`,
+     {mode: 'cors'})
+    .then(res => res.json())
+}
+

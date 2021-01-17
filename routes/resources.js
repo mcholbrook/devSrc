@@ -6,6 +6,7 @@ router.get('/', resourcesCtrl.index)
 router.get('/:id/myResources', resourcesCtrl.myResources)
 router.use(require('../config/auth'));
 router.post('/', checkAuth, resourcesCtrl.create);
+router.get('/:id/details', checkAuth, resourcesCtrl.getOneResource)
 router.get('/random', checkAuth, resourcesCtrl.randomResources)
 router.post('/search', checkAuth, resourcesCtrl.search);
 router.put('/:id', checkAuth, resourcesCtrl.deleteFromSaved);
