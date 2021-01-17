@@ -73,7 +73,10 @@ class App extends Component {
           path="/"
           render={() => (
             <main>
-              <h1>Welcome. This is an authorization template.</h1>
+              <div id="intro">
+              <h1>Welcome to devSrc,</h1>
+              <h4>a resource sharing app for Software Engineers.</h4>
+              </div>
             </main>
           )}
         />

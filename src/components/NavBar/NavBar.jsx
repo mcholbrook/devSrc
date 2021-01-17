@@ -35,7 +35,7 @@ const NavBar = ({ user, handleLogout }) => {
         </nav>
       ) : (
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper teal lighten-2">
             <ul id="nav-mobile" className="right">
               <li>
                 <Link to="/login" className="nav-link">
