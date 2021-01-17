@@ -6,9 +6,11 @@ import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from '../Users/Users'
 import "./App.css";
-import Chat from '../Chat/Chat'
+import ChatRoom from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 import * as resourceAPI from '../../services/resourceApi'
+import useChat from '../../useChat'
+import Home from '../Home/Home'
 
 
 
@@ -92,12 +94,12 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
-        <Route 
+        {/* <Route 
           exact path="/chat"
           render={() => (
             <Chat />
           )}
-        />
+        /> */}
          <Route 
           exact path="/myNotebook"
           render={() => (
@@ -116,6 +118,8 @@ class App extends Component {
           />
           }
         /> */}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/:roomId" component={ChatRoom} />
       </>
     );
   }
