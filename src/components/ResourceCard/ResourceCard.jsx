@@ -22,7 +22,11 @@ const ResourceCard = ({resource, handleDeleteResource, user}) => {
         <>
         <h1>{resource.title}</h1>
         <a href={resource.url}>Go to Resource</a>
-        <a href="#">Details</a>
+        <p>
+        <Link to='/details'>
+            Details
+        </Link>
+        </p>
         <button type='submit' onClick={(resource) => handleDeleteResource(resource)}>Delete</button>
         </>
     );

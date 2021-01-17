@@ -9,9 +9,11 @@ import "./App.css";
 import Chat from '../Chat/Chat'
 import AddResource from '../AddResource/AddResource'
 import * as resourceAPI from '../../services/resourceApi'
+import ShowResource from '../ShowResource/ShowResource'
 import * as flashCardAPI from '../../services/flashCardApi'
 import ResourceList from '../../components/ResourceList/ResourceList'
 import FlashCardList from '../FlashCardList/FlashCardList'
+
 
 
 class App extends Component {
@@ -25,8 +27,10 @@ class App extends Component {
 
   async componentDidMount() {
     // const resources = await resourceAPI.getAll()
-    const myResources = await resourceAPI.getMyResources(this.state.user)
-    this.setState({myResources: myResources.savedItems})                
+    if (this.state.user) {
+      const myResources = await resourceAPI.getMyResources(this.state.user)
+      this.setState({myResources: myResources.savedItems})                
+    } 
   };
 
   handleLogout = () => {
@@ -116,6 +120,12 @@ class App extends Component {
           )}
         />
         <Route 
+          exact path='/details'
+          render={() => (
+            <ShowResource />
+          )}
+        />
+        <Route
           exact path="/studyBuddy"
           render={() => (
             <FlashCardList
