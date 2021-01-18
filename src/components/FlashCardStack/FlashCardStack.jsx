@@ -9,6 +9,8 @@ const FlashCardStack = (props) => {
                 {props.flashCards.map(flashcard => (
                     <FlashCard 
                         flashcard={flashcard}
+                        frontSide={flashcard.frontSide}
+                        backSide={flashcard.backSide}
                         user={props.user}
                         key={flashcard._id}
                     />

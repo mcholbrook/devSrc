@@ -8,9 +8,9 @@ class FlashCardList extends Component {
     render() { 
         return ( 
         <>
-        <div className='flashCardStackShow'>
+        <div className='flashCardStack'>
             <FlashCardStack 
-                flashCards={this.props.flashCards}
+                flashCards={this.props.user.flashCards}
             />
         </div>
             <AddFlashcard 

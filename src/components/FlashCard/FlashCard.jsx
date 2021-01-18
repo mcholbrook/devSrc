@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./FlashCard.css"
 
 
 function FlashCard({ frontSide, backSide}) {
@@ -16,7 +17,7 @@ function FlashCard({ frontSide, backSide}) {
                   onClick={handleClick}
                 >
                     {text}
-                </div>;
+                </div>
             </>
         )
     }
