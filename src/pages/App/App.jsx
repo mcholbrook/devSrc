@@ -11,9 +11,9 @@ import AddResource from "../AddResource/AddResource";
 import * as resourceAPI from "../../services/resourceApi";
 import ShowResource from "../ShowResource/ShowResource";
 import * as flashCardAPI from "../../services/flashCardApi";
-import ResourceList from "../../components/ResourceList/ResourceList";
 import FlashCardList from "../FlashCardList/FlashCardList";
 import AddNewNote from '../../components/AddNote/AddNote'
+
 
 class App extends Component {
   state = {
@@ -21,7 +21,8 @@ class App extends Component {
     resources: [],
     flashCards: [],
     myResources: [],
-    savedItems: []
+    savedItems: [],
+    notes: []
   };
 
   async componentDidMount() {
@@ -51,6 +52,19 @@ class App extends Component {
       () => this.props.history.push("/myNotebook")
     );
   };
+
+  handleAddNote = async (newNoteData) => {
+    const newNote = await resourceAPI.addNote(newNoteData);
+    const newResourceArray = this.state.resources.map((r) =>
+    r._id === newNote._id ? newNote : r)
+    this.setState(
+      (state) => ({
+        note: [...state.resources.notes, newResourceArray],
+      }),
+      () => this.props.history.push("/details")
+    );
+  };
+
 
   // addToSaved = id => {
   //   const newResource = this.state.resource.find(r => r._id === id);
@@ -154,8 +168,11 @@ class App extends Component {
           <Route
           exact
           path="/details"
-          render={() => (
+          render={({ location }) => (
             <AddNewNote
+            handleAddNote={this.handleAddNote}
+            location={location}
+            user={this.state.user}
             />
           )}
         />

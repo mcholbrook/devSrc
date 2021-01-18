@@ -4,7 +4,6 @@ module.exports = {
     addNote
 }
 
-
 function addNote(req, res) {
     Resource.findById(req.params.id, (resource) => {
         resource.notes.push(req.body)

@@ -15,9 +15,8 @@ PSEUDO CODE:
 import React from "react";
 
 const ShowResource = (props) => {
-
   const resource = props.location.state.resource;
- 
+
   return (
     <>
       <p>Title: {resource.title}</p>
@@ -27,6 +26,12 @@ const ShowResource = (props) => {
       <button>Save</button>
       {/* onClick={(resource) => props.addToSaved(resource)} */}
       <button>Upvote</button>
+      {/* <div>
+      <p>Notes</p>
+        {props.notes.map((note) => (
+          <p>{note}</p>
+        ))}
+      </div> */}
     </>
   );
 };
