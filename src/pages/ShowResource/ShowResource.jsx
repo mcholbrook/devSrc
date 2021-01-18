@@ -13,6 +13,7 @@ PSEUDO CODE:
 */
 
 import React from "react";
+import AddNote from '../../components/AddNote/AddNote'
 
 const ShowResource = (props) => {
   const resource = props.location.state.resource;
@@ -23,17 +24,18 @@ const ShowResource = (props) => {
       <p>Description: {resource.description}</p>
       <p>Tags: {resource.tag}</p>
       <a href={resource.url}>Go to Resource</a>
-      <button>Save</button>
-      {/* onClick={(resource) => props.addToSaved(resource)} */}
-      <button>Upvote</button>
-      {/* <div>
-      <p>Notes</p>
-        {props.notes.map((note) => (
-          <p>{note}</p>
+        {resource.notes.map((note) =>(
+            <div>Note: {note.content}</div>
         ))}
-      </div> */}
-    </>
-  );
-};
+
+      <button>Save</button>
+      <button>Upvote</button>
+            <AddNote
+            resource={resource}
+            handleAddNote={props.handleAddNote}
+            />
+      </>
+  )
+}
 
 export default ShowResource;

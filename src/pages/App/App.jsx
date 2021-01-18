@@ -14,6 +14,7 @@ import * as flashCardAPI from "../../services/flashCardApi";
 import FlashCardList from "../FlashCardList/FlashCardList";
 import AddNewNote from "../../components/AddNote/AddNote";
 import SearchResource from '../Search/Search'
+import * as noteAPI from '../../services/noteApi'
 
 class App extends Component {
   state = {
@@ -54,12 +55,12 @@ class App extends Component {
   };
 
   handleAddNote = async (newNoteData) => {
-    const newNote = await resourceAPI.addNote(newNoteData);
+    const newNote = await noteAPI.addNote(newNoteData);
     this.setState(
       (state) => ({
         notes: [...state.notes, newNote]
       }),
-      () => this.props.history.push("/details")
+      () => this.props.history.push("/myNotebook")
     );
   };
 
@@ -94,7 +95,6 @@ class App extends Component {
           render={() => (
             <main>
               <div id="intro">
-              <h1>devSrc</h1>
               <h1>Welcome to devSrc,</h1>
               <h4>a resource sharing app for Software Engineers.</h4>
               </div>
@@ -155,6 +155,7 @@ class App extends Component {
           render={({ location }) => (
             <ShowResource
               location={location}
+              handleAddNote={this.handleAddNote}
               // addToSaved={this.addToSaved}
               user={this.state.user}
             />
@@ -175,17 +176,7 @@ class App extends Component {
             )
           }
         />
-        <Route
-          exact
-          path="/details"
-          render={({ location }) => (
-            <AddNewNote
-              handleAddNote={this.handleAddNote}
-              location={location}
-              user={this.state.user}
-            />
-          )}
-        />
+        
          <Route
           exact
           path="/search"
