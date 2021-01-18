@@ -135,7 +135,7 @@ class App extends Component {
             authService.getUser() ? <Chat /> : <Redirect to="/login" />
           }
         />
-        <Route exact path="/chat" component={Chat} />
+        {/* <Route exact path="/chat" component={Chat} /> */}
         <Route
           exact
           path="/myNotebook"

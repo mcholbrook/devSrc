@@ -7,6 +7,7 @@ const Chat = (props) => {
   const { room } = 'chat';
   const { messages, sendMessage } = useChat(room);
   const [newMessage, setNewMessage] = useState("");
+  //const {chatters, setChatters } = 
 
   const handleNewMessageChange = (e) => {
     setNewMessage(e.target.value);
