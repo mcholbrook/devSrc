@@ -15,6 +15,7 @@ const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const resourcesRouter = require('./routes/resources');
 const flashCardRouter = require('./routes/flashcards')
+const notesRouter = require('./routes/notes')
 
 const cors = require('cors');
 
@@ -32,6 +33,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/resources', resourcesRouter)
 app.use('/api/flashcards', flashCardRouter)
+app.use('/api/notes', notesRouter)
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

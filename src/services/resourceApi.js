@@ -40,16 +40,4 @@ export function getMyResources(user) {
   }).then((res) => res.json());
 }
 
-export function addNote(resource) {
-    return fetch(
-      `${BASE_URL}${resource._id}/notes`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          Authorization: "Bearer " + tokenService.getToken(),
-        },
-      },
-      { mode: "cors" }
-    ).then((res) => res.json());
-  }
+

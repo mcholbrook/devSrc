@@ -3,7 +3,7 @@ const notesCtrl = require('../controllers/notes');
 
 // Protected Routes
 router.use(require('../config/auth'));
-router.put('/:id/notes', checkAuth, notesCtrl.addNote)
+router.put('/:id', checkAuth, notesCtrl.addNote)
 
 
 function checkAuth(req, res, next) {
