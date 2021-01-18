@@ -4,6 +4,7 @@ import ResourceCard from "../../components/ResourceCard/ResourceCard";
 const ResourceList = (props) => {
   return (
     <>
+    <h2>My Saved Items:</h2>
       <div className="saved-resources">
         {props.myResources.map((resource) => (
           <ResourceCard

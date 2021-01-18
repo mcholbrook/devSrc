@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 const ResourceCard = ({ resource, handleDeleteResource }) => {
     return (
         <>
-          <h1>{resource.title}</h1>
+          <h3>{resource.title}</h3>
           <a href={resource.url}>Go to Resource</a>
           <p>
             <Link
