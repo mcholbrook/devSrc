@@ -1,11 +1,11 @@
 const Resource = require('../models/resource')
 
 module.exports = {
-    createNote
+    addNote
 }
 
 
-function createNote(req, res) {
+function addNote(req, res) {
     Resource.findById(req.params.id, (resource) => {
         resource.notes.push(req.body)
         resource.save()
