@@ -102,7 +102,7 @@ class App extends Component {
           path="/users"
           render={() => (user ? <Users /> : <Redirect to="/login" />)}
         />
-        <Route exact path="/chat" render={() => <Chat />} />
+        <Route exact path="/chat" component={Chat} />
         <Route
           exact
           path="/myNotebook"

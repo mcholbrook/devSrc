@@ -50,7 +50,7 @@ function search(req, res) {
   });
   Resource.find({
     $text: {
-      $search: `${body}`,
+      $search: `${req.body}`,
     },
   })
     .then((resource) => {
