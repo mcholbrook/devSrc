@@ -12,8 +12,7 @@ import * as resourceAPI from "../../services/resourceApi";
 import ShowResource from "../ShowResource/ShowResource";
 import * as flashCardAPI from "../../services/flashCardApi";
 import FlashCardList from "../FlashCardList/FlashCardList";
-import AddNewNote from '../../components/AddNote/AddNote'
-
+import AddNewNote from "../../components/AddNote/AddNote";
 
 class App extends Component {
   state = {
@@ -22,7 +21,7 @@ class App extends Component {
     flashCards: [],
     myResources: [],
     savedItems: [],
-    notes: []
+    notes: [],
   };
 
   async componentDidMount() {
@@ -56,7 +55,8 @@ class App extends Component {
   handleAddNote = async (newNoteData) => {
     const newNote = await resourceAPI.addNote(newNoteData);
     const newResourceArray = this.state.resources.map((r) =>
-    r._id === newNote._id ? newNote : r)
+      r._id === newNote._id ? newNote : r
+    );
     this.setState(
       (state) => ({
         note: [...state.resources.notes, newResourceArray],
@@ -64,7 +64,6 @@ class App extends Component {
       () => this.props.history.push("/details")
     );
   };
-
 
   // addToSaved = id => {
   //   const newResource = this.state.resource.find(r => r._id === id);
@@ -86,9 +85,6 @@ class App extends Component {
     );
   };
 
- 
-  
-
   render() {
     const { user } = this.state;
     return (
@@ -99,7 +95,7 @@ class App extends Component {
           path="/"
           render={() => (
             <main>
-              <h1>Welcome. This is an authorization template.</h1>
+              <h1>devSrc</h1>
             </main>
           )}
         />
@@ -128,48 +124,62 @@ class App extends Component {
           path="/users"
           render={() => (user ? <Users /> : <Redirect to="/login" />)}
         />
-        <Route exact path="/chat" render={() => <Chat />} />
+        <Route
+          exact
+          path="/chat"
+          render={() =>
+            authService.getUser() ? <Chat /> : <Redirect to="/login" />
+          }
+        />
         <Route
           exact
           path="/myNotebook"
-          render={() => (
-            <AddResource
-              handleAddResource={this.handleAddResource}
-              myResources={this.state.myResources}
-              user={this.state.user}
-            />
-          )}
+          render={() =>
+            authService.getUser() ? (
+              <AddResource
+                handleAddResource={this.handleAddResource}
+                myResources={this.state.myResources}
+                user={this.state.user}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
         <Route
           exact
           path="/details"
           render={({ location }) => (
-            <ShowResource 
-            location={location}
-            // addToSaved={this.addToSaved}
-            user={this.state.user}
-           />
+            <ShowResource
+              location={location}
+              // addToSaved={this.addToSaved}
+              user={this.state.user}
+            />
           )}
         />
         <Route
           exact
           path="/studyBuddy"
-          render={() => (
-            <FlashCardList
-              flashCards={this.state.flashCards}
-              handleAddFlashCard={this.handleAddFlashCard}
-              user={this.state.user}
-            />
-          )}
+          render={() =>
+            authService.getUser() ? (
+              <FlashCardList
+                flashCards={this.state.flashCards}
+                handleAddFlashCard={this.handleAddFlashCard}
+                user={this.state.user}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
-          <Route
+        <Route
           exact
           path="/details"
           render={({ location }) => (
             <AddNewNote
-            handleAddNote={this.handleAddNote}
-            location={location}
-            user={this.state.user}
+              handleAddNote={this.handleAddNote}
+              location={location}
+              user={this.state.user}
             />
           )}
         />

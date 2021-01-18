@@ -79,6 +79,7 @@ class AddResource extends Component {
   render() {
     return (
       <>
+      <h2>Submit Resource</h2>
         <div id="addResource" className="row">
           <form
             className="col s12"
