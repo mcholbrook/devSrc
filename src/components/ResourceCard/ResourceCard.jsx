@@ -16,29 +16,31 @@ PSEUDO CODE:
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ResourceCard = ({ resource, handleDeleteResource, user }) => {
-  return (
-    <>
-      <h1>{resource.title}</h1>
-      <a href={resource.url}>Go to Resource</a>
-      <p>
-        <Link
-          to={{
-            pathname: "/details",
-            state: { resource },
-          }}
-        >
-          Details
-        </Link>
-      </p>
-      <button
-        type="submit"
-        onClick={(resource) => handleDeleteResource(resource)}
-      >
-        Delete
-      </button>
-    </>
-  );
-};
+
+const ResourceCard = ({ resource, handleDeleteResource }) => {
+    return (
+        <>
+          <h1>{resource.title}</h1>
+          <a href={resource.url}>Go to Resource</a>
+          <p>
+            <Link
+              to={{
+                pathname: "/details",
+                state: { resource },
+                // function: handleAddNote()
+              }}
+            >
+              Details
+            </Link>
+          </p>
+          <button
+            type="submit"
+            onClick={(resource) => handleDeleteResource(resource)}
+          >
+            Delete
+          </button>
+        </>
+      );
+    };
 
 export default ResourceCard;

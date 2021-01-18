@@ -15,7 +15,9 @@ PSEUDO CODE:
 import React from "react";
 
 const ShowResource = (props) => {
+
   const resource = props.location.state.resource;
+ 
   return (
     <>
       <p>Title: {resource.title}</p>
@@ -23,6 +25,7 @@ const ShowResource = (props) => {
       <p>Tags: {resource.tag}</p>
       <a href={resource.url}>Go to Resource</a>
       <button>Save</button>
+      {/* onClick={(resource) => props.addToSaved(resource)} */}
       <button>Upvote</button>
     </>
   );

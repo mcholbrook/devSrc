@@ -13,6 +13,7 @@ import ShowResource from "../ShowResource/ShowResource";
 import * as flashCardAPI from "../../services/flashCardApi";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import FlashCardList from "../FlashCardList/FlashCardList";
+import AddNewNote from '../../components/AddNote/AddNote'
 
 class App extends Component {
   state = {
@@ -20,6 +21,7 @@ class App extends Component {
     resources: [],
     flashCards: [],
     myResources: [],
+    savedItems: []
   };
 
   async componentDidMount() {
@@ -50,6 +52,16 @@ class App extends Component {
     );
   };
 
+  // addToSaved = id => {
+  //   const newResource = this.state.resource.find(r => r._id === id);
+  // this.setState(
+  //   (state) => ({
+  //     savedItems: [...state.resources, newResource]
+  //   }),
+  //   () => this.props.history.push("/myNotebook")
+  // )
+  // }
+
   handleAddFlashCard = async (newFlashCardData) => {
     const newFlashCard = await flashCardAPI.create(newFlashCardData);
     this.setState(
@@ -59,6 +71,9 @@ class App extends Component {
       () => this.props.history.push("/studyBuddy")
     );
   };
+
+ 
+  
 
   render() {
     const { user } = this.state;
@@ -118,7 +133,11 @@ class App extends Component {
           exact
           path="/details"
           render={({ location }) => (
-            <ShowResource location={location} user={this.state.user} />
+            <ShowResource 
+            location={location}
+            // addToSaved={this.addToSaved}
+            user={this.state.user}
+           />
           )}
         />
         <Route
@@ -129,6 +148,14 @@ class App extends Component {
               flashCards={this.state.flashCards}
               handleAddFlashCard={this.handleAddFlashCard}
               user={this.state.user}
+            />
+          )}
+        />
+          <Route
+          exact
+          path="/details"
+          render={() => (
+            <AddNewNote
             />
           )}
         />

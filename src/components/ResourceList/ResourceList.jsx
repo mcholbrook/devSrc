@@ -8,6 +8,7 @@ const ResourceList = (props) => {
         {props.myResources.map((resource) => (
           <ResourceCard
             handleDeleteResource={props.handleDeleteResource}
+            // handleAddNote={props.handleAddNote}
             resource={resource}
             user={props.user}
           />

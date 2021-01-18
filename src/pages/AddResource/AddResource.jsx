@@ -64,6 +64,18 @@ class AddResource extends Component {
     });
   };
 
+//   handleAddNote = async (addNoteToResource) => {
+//     const addNewNote = await resourceAPI.addNote(addNoteToResource)
+//     const newNoteArray = this.state.reasources.map((r) =>
+//     r._id === addNewNote._id ? addNewNote : r)
+//     this.setState ({resources: newNoteArray}, () => 
+//     this.props.history.push("/details"))
+//   }
+
+
+
+
+
   render() {
     return (
       <>
@@ -233,6 +245,7 @@ class AddResource extends Component {
 		<ResourceList 
 			myResources={this.props.myResources}
 			handleDeleteResource= {this.handleDeleteResource}
+            // handleAddNote={this.handleAddNote}
 			user= {this.props.user} />
       </>
     );
