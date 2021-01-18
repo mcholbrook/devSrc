@@ -13,6 +13,7 @@ import ShowResource from "../ShowResource/ShowResource";
 import * as flashCardAPI from "../../services/flashCardApi";
 import FlashCardList from "../FlashCardList/FlashCardList";
 import AddNewNote from "../../components/AddNote/AddNote";
+import SearchResource from '../Search/Search'
 
 class App extends Component {
   state = {
@@ -54,12 +55,9 @@ class App extends Component {
 
   handleAddNote = async (newNoteData) => {
     const newNote = await resourceAPI.addNote(newNoteData);
-    const newResourceArray = this.state.resources.map((r) =>
-      r._id === newNote._id ? newNote : r
-    );
     this.setState(
       (state) => ({
-        note: [...state.resources.notes, newResourceArray],
+        notes: [...state.notes, newNote]
       }),
       () => this.props.history.push("/details")
     );
@@ -188,6 +186,16 @@ class App extends Component {
             />
           )}
         />
+         <Route
+          exact
+          path="/search"
+          render={() => (
+            <SearchResource
+              user={this.state.user}
+            />
+          )}
+        />
+     
         {/* <Route 
           exact path='/myNotebook'
           render={() => 
