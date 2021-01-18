@@ -33,3 +33,46 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 
 
 */
+
+import React, { Component } from 'react';
+
+class SearchResources extends Component {
+    state = {
+        invalidForm: false,
+        formData: {
+            queryString: ''
+        },
+        results: [],
+    }
+
+    formRef = React.createRef()
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleAddResource(this.state.formData);
+      };
+
+      handleChange = (e) => {
+        const formData = {
+          ...this.state.formData,
+          [e.target.name]: e.target.value,
+        };
+        this.setState({
+          formData,
+          invalidForm: !this.formRef.current.checkValidity(),
+        });
+      };
+
+    render() { 
+        return (
+            <>
+            <h1>This is the search page!</h1>
+            <form ref={this.formRef} onSubmit={this.handleSubmit}>
+            <input name='querySring'></input>
+            </form>
+            </>
+        );
+    }
+}
+ 
+export default SearchResources;

@@ -16,7 +16,7 @@ const resourceSchema = new Schema({
   creatorName: String,
   creator: {type: Schema.Types.ObjectId, ref:'User'},
   upvotes: {type: String, default: 0},
-  note: [noteSchema]
+  notes: [noteSchema]
 }, {timestamps:true})
 
 

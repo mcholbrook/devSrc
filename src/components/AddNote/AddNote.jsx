@@ -5,8 +5,7 @@ class AddNote extends Component {
         invalidForm: true,
         formData: {
           note: "",
-        },
-        resources: [],
+        }
       };
     
       formRef = React.createRef();
