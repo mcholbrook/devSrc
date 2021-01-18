@@ -1,7 +1,7 @@
-#Login {
+#Signup {
   background-color: lightgrey;
   width: 70rem;
-  height: 28rem;
+  height: 42rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -11,22 +11,22 @@
   border-radius: 5px;
 }
 
+h3 {
+    margin-top: 0;
+}
+
 .col {
   margin: 10px;
 }
 
+#name,
 #email,
-#password {
+#password,
+#confirm {
   background-color: white;
   color: black;
   margin: 0px;
+  border-radius: 2px;
 }
 
-.card-text {
-  display: flex;
-  flex-flow: column nowrap;
-  color: black;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-}
+

@@ -28,17 +28,30 @@ class LoginPage extends Component {
     }
   };
 
+  // isFormInvalid() {
+  //   const { email, password } = this.state;
+  //   if(email && password);
+  //   return (type(submit));
+  // }
+
   updateMessage = (msg) => {
-    this.setState({message: msg});
-  }
+    this.setState({ message: msg });
+  };
 
   render() {
-    const {email, pw} = this.state
+    const { email, pw } = this.state;
     return (
-      <main className="Login">
-        <h3>Log In</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
+      <main id="Login" className="row">
+        <div>
+          <h3>Log In</h3>
+        </div>
+        <form
+          className="col s12"
+          autoComplete="off"
+          onSubmit={this.handleSubmit}
+        >
           <input
+            className="active"
             type="text"
             autoComplete="off"
             id="email"
@@ -46,8 +59,11 @@ class LoginPage extends Component {
             name="email"
             onChange={this.handleChange}
           />
-          <label htmlFor="email">Email</label>
+          <label className="card-text" htmlFor="email">
+            Email
+          </label>
           <input
+            className="active"
             type="password"
             autoComplete="off"
             id="password"
@@ -55,9 +71,18 @@ class LoginPage extends Component {
             name="pw"
             onChange={this.handleChange}
           />
-          <label htmlFor="password">Password</label>
-          <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
-          <Link className="btn red" to="/">
+          <label className="card-text" htmlFor="password">
+            Password
+          </label>
+          <button
+            type="submit"
+            className="btn"
+            // disabled={this.isFormInvalid()}
+          >
+            Log In
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <Link className="btn red lighten-2" to="/">
             Cancel
           </Link>
         </form>

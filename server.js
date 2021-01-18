@@ -7,12 +7,17 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 
+const http = require('http').Server(app);
+const io = require('./io');
+io.attach(http);
+
 const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const resourcesRouter = require('./routes/resources');
 const flashCardRouter = require('./routes/flashcards')
 
-const cors = require('cors')
+const cors = require('cors');
+
 
 
 app.use(cors());
@@ -34,6 +39,6 @@ app.get('/*', function(req, res) {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, ()=> {
+http.listen(port, ()=> {
   console.log(`Express is listening on port ${port}.`)
 });

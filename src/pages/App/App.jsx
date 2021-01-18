@@ -95,7 +95,11 @@ class App extends Component {
           path="/"
           render={() => (
             <main>
+              <div id="intro">
               <h1>devSrc</h1>
+              <h1>Welcome to devSrc,</h1>
+              <h4>a resource sharing app for Software Engineers.</h4>
+              </div>
             </main>
           )}
         />
@@ -131,6 +135,7 @@ class App extends Component {
             authService.getUser() ? <Chat /> : <Redirect to="/login" />
           }
         />
+        <Route exact path="/chat" component={Chat} />
         <Route
           exact
           path="/myNotebook"
