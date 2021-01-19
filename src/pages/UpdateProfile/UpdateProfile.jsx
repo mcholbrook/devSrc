@@ -13,6 +13,7 @@
 
 import React, { Component } from "react";
 import { getAllUsers } from "../../services/userService";
+import './UpdateProfile.css'
 
 class UpdateProfile extends Component {
   state = {
@@ -29,6 +30,8 @@ class UpdateProfile extends Component {
     },
   };
 
+  formRef = React.createRef();
+  
   async componentDidMount() {
     const users = await getAllUsers();
     this.setState({ users });
@@ -175,7 +178,7 @@ class UpdateProfile extends Component {
               className="btn"
               disabled={this.state.invalidForm}
             >
-              Submit Resource
+              Update
             </button>
           </form>
         </div>
