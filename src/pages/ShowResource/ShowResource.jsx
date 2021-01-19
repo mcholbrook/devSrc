@@ -12,30 +12,73 @@ PSEUDO CODE:
 
 */
 
-import React from "react";
+//import React from "react";
+import React, { Component } from 'react';
 import AddNote from '../../components/AddNote/AddNote'
+import resourceAPI from '../../services/resourceApi'
 
-const ShowResource = (props) => {
-  const resource = props.location.state.resource;
 
-  return (
-    <>
-      <p>Title: {resource.title}</p>
-      <p>Description: {resource.description}</p>
-      <p>Tags: {resource.tag}</p>
-      <a href={resource.url}>Go to Resource</a>
-        {resource.notes.map((note) =>(
-            <div>Note: {note.content}</div>
-        ))}
 
-      <button>Save</button>
-      <button>Upvote</button>
-            <AddNote
-            resource={resource}
-            handleAddNote={props.handleAddNote}
-            />
-      </>
-  )
+class ShowResource extends Component {
+  state = { 
+    resource: this.props.location.state.resource
+   }
+
+  // async componentDidMount() {
+  //   const resource = await resourceAPI.getOne()
+  //   if (this.state.user) {
+  //     const myResources = await resourceAPI.getMyResources(this.state.user);
+  //     this.setState({ myResources: myResources.savedItems });
+  //   }
+  // }
+
+  render() { 
+    const resource = this.props.location.state.resource;
+    return (
+      <>
+        
+        <p>Title: {resource.title}</p>
+        <p>Description: {resource.description}</p>
+        <p>Tags: {resource.tag}</p>
+        <a href={resource.url}>Go to Resource</a>
+          {resource.notes.map((note) =>(
+              <div>Note: {note.content}</div>
+          ))}
+  
+        <button>Save</button>
+        <button>Upvote</button>
+              <AddNote
+              resource={resource}
+              handleAddNote={this.props.handleAddNote}
+              />
+        </>
+    )
+  }
 }
-
+ 
 export default ShowResource;
+
+// const ShowResource = (props) => {
+//   const resource = props.location.state.resource;
+
+//   return (
+//     <>
+//       <p>Title: {resource.title}</p>
+//       <p>Description: {resource.description}</p>
+//       <p>Tags: {resource.tag}</p>
+//       <a href={resource.url}>Go to Resource</a>
+//         {resource.notes.map((note) =>(
+//             <div>Note: {note.content}</div>
+//         ))}
+
+//       <button>Save</button>
+//       <button>Upvote</button>
+//             <AddNote
+//             resource={resource}
+//             handleAddNote={props.handleAddNote}
+//             />
+//       </>
+//   )
+// }
+
+// export default ShowResource;

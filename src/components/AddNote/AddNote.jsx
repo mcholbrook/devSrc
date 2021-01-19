@@ -4,7 +4,7 @@ class AddNote extends Component {
     state = {
         invalidForm: true,
         formData: {
-          note: "",
+          content: "",
           resourceId: this.props.resource._id
         }
       };
@@ -32,7 +32,7 @@ class AddNote extends Component {
             <>
             <div className="comment box">
             <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <input name="note" type="text" value={this.state.formData.note} onChange={this.handleChange}></input>
+            <input name="content" type="text" value={this.state.formData.note} onChange={this.handleChange}></input>
             <input name='id' hidden value={this.state.formData.resourceId}></input>
                 <button>Add Note</button>
             </form>

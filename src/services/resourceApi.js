@@ -10,7 +10,7 @@ export function create(resource) {
         "content-type": "application/json",
         Authorization: "Bearer " + tokenService.getToken(),
       },
-      body: JSON.stringify(resource),
+      body: JSON.stringify(resource)
     },
     { mode: "cors" }
   ).then((res) => res.json());
