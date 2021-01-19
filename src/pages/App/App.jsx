@@ -25,6 +25,7 @@ class App extends Component {
     myResources: [],
     savedItems: [],
     notes: [],
+    searchResults: []
   };
 
   async componentDidMount() {
@@ -64,6 +65,13 @@ class App extends Component {
       () => this.props.history.push("/myNotebook")
     );
   };
+
+  handleSearch = async (searchData) => {
+    const newSearch = await resourceAPI.search(searchData)
+    this.setState((state) => ({
+      searchResults: [...newSearch]
+    }))
+  }
 
   // addToSaved = id => {
   //   const newResource = this.state.resource.find(r => r._id === id);
@@ -183,6 +191,8 @@ class App extends Component {
           path="/search"
           render={() => (
             <SearchResource
+            searchResults={this.state.searchResults}
+            handleSearch={this.handleSearch}
               user={this.state.user}
             />
           )}
