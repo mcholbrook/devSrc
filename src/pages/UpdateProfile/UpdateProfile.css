@@ -1,0 +1,40 @@
+#UserProfile {
+    background-color: lightgrey;
+    width: 70rem;
+    height: 45rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 5px;
+}
+  
+  .col {
+    margin: 10px;
+  }
+  
+  .input-field {
+    background-color: white;
+    color: black;
+    margin: 0px;
+  }
+  
+  .tag-selections {
+    margin: 15px;
+  }
+  
+  .tags {
+    display: flex;
+    padding: 10px auto;
+  }
+  
+  .card-text {
+    color: black;
+    place-content: left;
+  }
+  
+  .btn {
+    margin-top: 20px;
+  }

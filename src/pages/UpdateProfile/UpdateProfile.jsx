@@ -13,6 +13,7 @@
 
 import React, { Component } from "react";
 import { getAllUsers } from "../../services/userService";
+import './UpdateProfile.css'
 
 class UpdateProfile extends Component {
   state = {
@@ -29,10 +30,17 @@ class UpdateProfile extends Component {
     },
   };
 
-  async componentDidMount() {
-    const users = await getAllUsers();
-    this.setState({ users });
-  }
+  formRef = React.createRef();
+
+//   async componentDidMount() {
+//     const users = await getAllUsers();
+//     this.setState({ users });
+//   }
+
+handleSubmit = e => {
+    e.preventDefault();
+    this.props.handleAddPuppy(this.state.formData);
+  };
 
   handleChange = (e) => {
     const formData = {
@@ -175,7 +183,7 @@ class UpdateProfile extends Component {
               className="btn"
               disabled={this.state.invalidForm}
             >
-              Submit Resource
+              Update
             </button>
           </form>
         </div>
