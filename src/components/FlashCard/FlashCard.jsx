@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./FlashCard.css"
 
 
-function FlashCard({ frontSide, backSide}) {
+function FlashCard({ frontSide, backSide, handleDeleteFlashCard, flashCard }) {
         const [ isFront, changeFace] = useState(true);
         function handleClick() {
           changeFace( oldState => !oldState)
@@ -18,6 +18,12 @@ function FlashCard({ frontSide, backSide}) {
                 >
                     {text}
                 </div>
+                <button
+                  type="submit"
+                  onClick={() => handleDeleteFlashCard(flashCard._id)}
+                  >
+                    Delete
+                  </button>
             </>
         )
     }

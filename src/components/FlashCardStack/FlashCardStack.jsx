@@ -6,13 +6,14 @@ const FlashCardStack = (props) => {
             <>
             <h1>Flash Cards</h1>
             <div className='flashCardStack'>
-                {props.flashCards.map(flashcard => (
+                {props.flashCards.map(flashCard => (
                     <FlashCard 
-                        flashcard={flashcard}
-                        frontSide={flashcard.frontSide}
-                        backSide={flashcard.backSide}
+                        flashCard={flashCard}
+                        frontSide={flashCard.frontSide}
+                        backSide={flashCard.backSide}
                         user={props.user}
-                        key={flashcard._id}
+                        key={flashCard._id}
+                        handleDeleteFlashCard={props.handleDeleteFlashCard}
                     />
                     
                 ))}

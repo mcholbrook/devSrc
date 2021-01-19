@@ -137,9 +137,10 @@ class App extends Component {
         <Route
           exact
           path="/myNotebook"
-          render={() =>
+          render={({history}) =>
             authService.getUser() ? (
               <AddResource
+                history={history}
                 handleAddResource={this.handleAddResource}
                 myResources={this.state.myResources}
                 user={this.state.user}
@@ -163,9 +164,10 @@ class App extends Component {
         <Route
           exact
           path="/studyBuddy"
-          render={() =>
+          render={({history}) =>
             authService.getUser() ? (
               <FlashCardList
+                history={history}
                 flashCards={this.state.flashCards}
                 handleAddFlashCard={this.handleAddFlashCard}
                 user={this.state.user}
