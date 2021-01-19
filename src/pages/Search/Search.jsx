@@ -49,7 +49,7 @@ class SearchResources extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleAddResource(this.state.formData);
+        this.props.handleSearch(this.state.formData);
       };
 
       handleChange = (e) => {
@@ -68,8 +68,12 @@ class SearchResources extends Component {
             <>
             <h1>This is the search page!</h1>
             <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <input name='querySring'></input>
+            <input name='queryString' value={this.state.formData.queryString} onChange={this.handleChange}></input>
+            <button type="submit">Submit</button>
             </form>
+            {this.props.searchResults.map((result) => (
+                <p>{result.title}</p>
+            ))}
             </>
         );
     }

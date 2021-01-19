@@ -19,6 +19,10 @@ const resourceSchema = new Schema({
   notes: [noteSchema]
 }, {timestamps:true})
 
-
+resourceSchema.index({
+  title: "text",
+  description: "text",
+  tag: "text",
+});
 
 module.exports = mongoose.model('Resource', resourceSchema)

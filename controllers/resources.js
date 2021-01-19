@@ -43,17 +43,14 @@ function index(req, res) {
 
 // Search a resource by text in the search bar
 function search(req, res) {
-  Resource.createIndexes({
-    title: "text",
-    description: "text",
-    tag: "text",
-  });
+    console.log(req.body)
   Resource.find({
     $text: {
-      $search: `${req.body}`,
+      $search: `${req.body.queryString}`,
     },
   })
     .then((resource) => {
+        console.log(resource)
       res.json(resource);
     })
     .catch((err) => {
