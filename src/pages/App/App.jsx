@@ -15,6 +15,7 @@ import FlashCardList from "../FlashCardList/FlashCardList";
 import AddNewNote from "../../components/AddNote/AddNote";
 import SearchResource from '../Search/Search'
 import * as noteAPI from '../../services/noteApi'
+import UserProfile from '../../pages/UserProfile/UserProfile'
 
 class App extends Component {
   state = {
@@ -196,6 +197,15 @@ class App extends Component {
           />
           }
         /> */}
+        <Route
+          exact
+          path="/myProfile"
+          render={() => (
+            <UserProfile
+              
+            />
+          )}
+        />
       </>
     );
   }
