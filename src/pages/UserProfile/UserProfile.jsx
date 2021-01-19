@@ -17,7 +17,6 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getAllUsers } from "../../services/userService";
 import "./UserProfile.css";
 
 class UserProfile extends Component {
@@ -25,18 +24,12 @@ class UserProfile extends Component {
     users: []
   };
 
-  async componentDidMount() {
-    const users = await getAllUsers();
-    this.setState({ users });
-  }
-
   render() {
     return (
       <>
         <h1>User Profile</h1>
         <img src="http://theoldreader.com/kittens/320/240/" alt="" />
-        <h2>{this.state.user.email}</h2>
-        <h3>{this.state.user.name}</h3>
+        <h2>{this.state.users.email}</h2>
         <p>
           <Link
             to={{

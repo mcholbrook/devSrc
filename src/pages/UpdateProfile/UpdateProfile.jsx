@@ -31,11 +31,16 @@ class UpdateProfile extends Component {
   };
 
   formRef = React.createRef();
-  
-  async componentDidMount() {
-    const users = await getAllUsers();
-    this.setState({ users });
-  }
+
+//   async componentDidMount() {
+//     const users = await getAllUsers();
+//     this.setState({ users });
+//   }
+
+handleSubmit = e => {
+    e.preventDefault();
+    this.props.handleAddPuppy(this.state.formData);
+  };
 
   handleChange = (e) => {
     const formData = {
