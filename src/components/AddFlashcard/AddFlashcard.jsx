@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlashCardStack from '../FlashCardStack/FlashCardStack'
+import * as flashCardAPI from '../../services/flashCardApi'
 
 class AddFlashCard extends Component {
     state = { 
@@ -17,6 +18,13 @@ class AddFlashCard extends Component {
         e.preventDefault()
         this.props.handleAddFlashCard(this.state.formData)
     }
+
+    // handleDeleteFlashCard = async (id) => {
+    //     await flashCardAPI.deleteFlashCard(id)
+    //     this.setState((state) => ({
+    //         flashCards: state.flashCards.filter((f) => f._id !== id)
+    //     }), () => this.props.history.push('/studyBuddy'))
+    // }
 
     handleChange = e => {
         const formData = {...this.state.formData, [e.target.name]: e.target.value}

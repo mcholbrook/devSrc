@@ -2,15 +2,27 @@
 import React, { Component } from 'react';
 import FlashCardStack from '../../components/FlashCardStack/FlashCardStack'
 import AddFlashcard from '../../components/AddFlashcard/AddFlashcard'
+import * as flashCardAPI from '../../services/flashCardApi'
 
 class FlashCardList extends Component {
-    
+    state = {
+        flashCards: []
+    }
+
+    handleDeleteFlashCard = async (id) => {
+        await flashCardAPI.deleteFlashCard(id)
+        this.setState((state) => ({
+            flashCards: state.flashCards.filter((f) => f._id !== id)
+        }), () => this.props.history.push('/studyBuddy'))
+    }
+
     render() { 
         return ( 
         <>
         <div className='flashCardStack'>
             <FlashCardStack 
                 flashCards={this.props.user.flashCards}
+                handleDeleteFlashCard={this.handleDeleteFlashCard}
             />
         </div>
             <AddFlashcard 
