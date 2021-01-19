@@ -30,6 +30,7 @@ class AddFlashCard extends Component {
         return ( 
             <>
             <div className="AddFlashCard">
+                <h3>Add New Flashcard</h3>
                 <form className='col s12' ref={this.formRef} onSubmit={this.handleSubmit}>
                     <div className='row'>
                         <div className='input-field col s12'>
