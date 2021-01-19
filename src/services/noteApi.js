@@ -10,6 +10,7 @@ export function addNote(newNoteData) {
           "content-type": "application/json",
           Authorization: "Bearer " + tokenService.getToken(),
         },
+        body: JSON.stringify(newNoteData),
       },
       { mode: "cors" }
     ).then((res) => res.json());

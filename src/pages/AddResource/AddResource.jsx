@@ -27,6 +27,14 @@ import * as resourceAPI from '../../services/resourceApi'
 import ResourceList from "../../components/ResourceList/ResourceList";
 import "./AddResource.css";
 
+let blankFormData = {
+    title: "",
+    description: "",
+    url: "",
+    tag: "",
+
+};
+
 class AddResource extends Component {
   state = {
     invalidForm: true,
@@ -36,14 +44,18 @@ class AddResource extends Component {
       url: "",
       tag: "",
     },
-    resources: [],
+    myResources: [...this.props.myResources],
   };
 
   formRef = React.createRef();
 
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.handleAddResource(this.state.formData);
+    this.setState((state) => ({
+      formData: blankFormData
+    }))
   };
 
   handleDeleteResource = async (id) => {
@@ -58,6 +70,8 @@ class AddResource extends Component {
       ...this.state.formData,
       [e.target.name]: e.target.value,
     };
+    console.log(this.state)
+    console.log(this.props.myResources)
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity(),

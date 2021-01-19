@@ -48,7 +48,7 @@ class App extends Component {
     const newResource = await resourceAPI.create(newResourceData);
     this.setState(
       (state) => ({
-        resources: [...state.resources, newResource],
+        myResources: [...state.myResources, newResource],
       }),
       () => this.props.history.push("/myNotebook")
     );
