@@ -20,25 +20,25 @@ import { Link } from "react-router-dom";
 const ResourceCard = ({ resource, handleDeleteResource }) => {
     return (
         <>
-          <h3>{resource.title}</h3>
-          <a href={resource.url}>Go to Resource</a>
-          <p>
-            <Link
-              to={{
-                pathname: "/details",
-                state: { resource },
-                // function: handleAddNote()
-              }}
-            >
-              Details
-            </Link>
-          </p>
-          <button
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="images/office.jpg"/>
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><a href={resource.url}>{resource.title}</a><i class="material-icons right">more_vert</i></span>
+               <p>{resource.description}</p>
+               <button
             type="submit"
             onClick={(resource) => handleDeleteResource(resource)}
           >
             Delete
           </button>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+        </div>
         </>
       );
     };

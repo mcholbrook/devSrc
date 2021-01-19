@@ -35,6 +35,7 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 */
 
 import React, { Component } from 'react';
+import ShowResource from '../ShowResource/ShowResource'
 
 class SearchResources extends Component {
     state = {
@@ -64,6 +65,7 @@ class SearchResources extends Component {
       };
 
     render() { 
+        
         return (
             <>
             <h1>This is the search page!</h1>
@@ -72,7 +74,20 @@ class SearchResources extends Component {
             <button type="submit">Submit</button>
             </form>
             {this.props.searchResults.map((result) => (
-                <p>{result.title}</p>
+                <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="/public/logo512.png" />
+            </div>
+             <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><a href={result.url}>{result.title}</a><i class="material-icons right">more_vert</i></span>
+                    <p>{result.description}</p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                  {/* <ShowResource 
+                  /> */}
+             </div>
+            </div>
             ))}
             </>
         );
