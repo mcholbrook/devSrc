@@ -18,10 +18,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
+import UserInfo from '../UserInfo/UserInfo'
 
 class UserProfile extends Component {
   state = {
-    users: []
+    user: []
   };
 
   render() {
@@ -29,14 +30,24 @@ class UserProfile extends Component {
       <>
         <h1>User Profile</h1>
         <img src="http://theoldreader.com/kittens/320/240/" alt="" />
-        <h2>{this.state.users.email}</h2>
+        <p>Name: {this.state.user.name}</p>
+        <UserInfo />
         <p>
           <Link
             to={{
               pathname: "/UpdateProfile",
             }}
           >
-            Update Profile
+            Connect
+          </Link>
+        </p>
+        <p>
+          <Link
+            to={{
+              pathname: "/UpdateProfile",
+            }}
+          >
+            Connect
           </Link>
         </p>
       </>

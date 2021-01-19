@@ -1,7 +1,7 @@
 #UserProfile {
     background-color: lightgrey;
     width: 70rem;
-    height: 45rem;
+    height: 30rem;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
