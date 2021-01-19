@@ -16,6 +16,7 @@ import AddNewNote from "../../components/AddNote/AddNote";
 import SearchResource from '../Search/Search'
 import * as noteAPI from '../../services/noteApi'
 import UserProfile from '../../pages/UserProfile/UserProfile'
+import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
 
 class App extends Component {
   state = {
@@ -201,11 +202,17 @@ class App extends Component {
           exact
           path="/myProfile"
           render={() => (
-            <UserProfile
-              
-            />
+            <UserProfile/>
           )}
         />
+        <Route
+          exact
+          path="/UpdateProfile"
+          render={() => (
+            <UpdateProfile
+            />
+          )}
+          />
       </>
     );
   }
