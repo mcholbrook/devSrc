@@ -49,7 +49,7 @@ class SearchResources extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleAddResource(this.state.formData);
+        this.props.handleSearch(this.state.formData);
       };
 
       handleChange = (e) => {
