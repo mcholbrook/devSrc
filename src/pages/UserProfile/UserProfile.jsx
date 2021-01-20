@@ -15,60 +15,68 @@
 // import authService from "../../services/authService";
 //and return a Route
 
-
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./UserProfile.css";
+import UserInfo from '../UserInfo/UserInfo'
 
-const UserProfile = ({ user }) => {
+class UserProfile extends Component {
+  state = {
+    user: []
+  };
+
+  render() {
     return (
       <>
         <h1>User Profile</h1>
+        <img src="http://theoldreader.com/kittens/320/240/" alt="" />
+        <p>Name: {this.state.user.name}</p>
+        <UserInfo />
         <p>
-            <Link
-              to={{
-                pathname: "/UpdateProfile",
-                state: { user },
-              }}
-            >
-              Update Profile
-            </Link>
-          </p>
+          <Link
+            to={{
+              pathname: "/UpdateProfile",
+            }}
+          >
+            Connect
+          </Link>
+        </p>
+        <p>
+          <Link
+            to={{
+              pathname: "/UpdateProfile",
+            }}
+          >
+            Connect
+          </Link>
+        </p>
       </>
     );
+  }
 }
 
 export default UserProfile;
 
+// const UserProfile = ({ user }) => {
+//   return (
+//     <>
+//       <h1>User Profile</h1>
+//       <div id="avatar-img">
+//       <img src="http://theoldreader.com/kittens/320/240/" alt=""/>
+//       </div>
+//       <h2>{user.email}</h2>
+//       <p>
+//         <Link
+//           to={{
+//             pathname: "/UpdateProfile",
+//             state: { user },
+//           }}
+//         >
+//           Update Profile
+//         </Link>
+//       </p>
+//     </>
+//   );
+// };
 
-
-// import React from "react";
-// import { Link } from "react-router-dom";
-
-
-// const ResourceCard = ({ resource, handleDeleteResource }) => {
-//     return (
-//         <>
-//           <h3>{resource.title}</h3>
-//           <a href={resource.url}>Go to Resource</a>
-//           <p>
-//             <Link
-//               to={{
-//                 pathname: "/details",
-//                 state: { resource },
-//                 // function: handleAddNote()
-//               }}
-//             >
-//               Details
-//             </Link>
-//           </p>
-//           <button
-//             type="submit"
-//             onClick={(resource) => handleDeleteResource(resource)}
-//           >
-//             Delete
-//           </button>
-//         </>
-//       );
-//     };
-
-// export default ResourceCard;
+// export default UserProfile;

@@ -12,27 +12,30 @@
 // Must use a handleUpdateProfile variable here
 
 import React, { Component } from "react";
-import { getAllUsers } from "../../services/userService";
+import './UpdateProfile.css'
 
 class UpdateProfile extends Component {
   state = {
     users: [],
     invalidForm: true,
     formData: {
-      name: "",
-      email: "",
-      password: "",
-      avatar: "",
       github: "",
       linkedIn: "",
       website: "",
     },
   };
 
-  async componentDidMount() {
-    const users = await getAllUsers();
-    this.setState({ users });
-  }
+  formRef = React.createRef();
+
+//   async componentDidMount() {
+//     const users = await getAllUsers();
+//     this.setState({ users });
+//   }
+
+// handleSubmit = e => {
+//     e.preventDefault();
+//     this.props.handleAddPuppy(this.state.formData);
+// };
 
   handleChange = (e) => {
     const formData = {
@@ -50,78 +53,15 @@ class UpdateProfile extends Component {
   render() {
     return (
       <>
+      
         <h1>Update Profile</h1>
+        <h4>Connect with your classmates</h4>
         <div id="UserProfile" className="row">
           <form
             className="col s12"
             ref={this.formRef}
             onSubmit={this.handleSubmit}
           >
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  name="user-name"
-                  id="user-name"
-                  type="text"
-                  className="active"
-                  value={this.state.formData.name}
-                  onChange={this.handleChange}
-                  required
-                />
-                <label className="card-text" htmlFor="profile-name">
-                  User Name:
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  name="email"
-                  id="email"
-                  type="text"
-                  autoComplete="off"
-                  className="active"
-                  value={this.state.formData.email}
-                  onChange={this.handleChange}
-                  required
-                />
-                <label className="card-text" htmlFor="email">
-                  Email:
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  name="password"
-                  id="password"
-                  type="text"
-                  autoComplete="off"
-                  className="active"
-                  value={this.state.formData.url}
-                  onChange={this.handleChange}
-                />
-                <label className="card-text" htmlFor="password">
-                Password:
-                </label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  name="avatar"
-                  id="avatar"
-                  type="text"
-                  autoComplete="off"
-                  className="active"
-                  value={this.state.formData.url}
-                  onChange={this.handleChange}
-                />
-                <label className="card-text" htmlFor="avatar">
-                Avatar (url):
-                </label>
-              </div>
-            </div>
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -175,7 +115,7 @@ class UpdateProfile extends Component {
               className="btn"
               disabled={this.state.invalidForm}
             >
-              Submit Resource
+              Update
             </button>
           </form>
         </div>
