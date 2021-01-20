@@ -56,43 +56,12 @@ class App extends Component {
     );
   };
 
-  // handleAddNote = async (newNoteData) => {
-  //   const newNote = await noteAPI.addNote(newNoteData);
-  //   this.setState(
-  //     (state) => ({
-  //       notes: [...state.notes, newNote]
-  //     }),
-  //     () => this.props.history.push("/myNotebook")
-  //   );
-  // };
-
   handleSearch = async (searchData) => {
     const newSearch = await resourceAPI.search(searchData)
     this.setState((state) => ({
       searchResults: [...newSearch]
     }))
   }
-
-  // addToSaved = id => {
-  //   const newResource = this.state.resource.find(r => r._id === id);
-  // this.setState(
-  //   (state) => ({
-  //     savedItems: [...state.resources, newResource]
-  //   }),
-  //   () => this.props.history.push("/myNotebook")
-  // )
-  // }
-
-  // handleAddFlashCard = async (newFlashCardData) => {
-  //   const newFlashCard = await flashCardAPI.create(newFlashCardData);
-  //   console.log(newFlashCard)
-  //   this.setState(
-  //     (state) => ({
-  //       flashCards: [...state.flashCards, newFlashCard],
-  //     }),
-  //     () => this.props.history.push("/studyBuddy")
-  //   );
-  // };
 
   render() {
     const { user } = this.state;

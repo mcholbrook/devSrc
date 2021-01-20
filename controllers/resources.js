@@ -16,13 +16,13 @@ module.exports = {
 function create(req, res) {
   req.body.creator = req.user._id;
   Resource.create(req.body)
-    // .then((resource) => {
-    //   User.findById(req.user._id).then((user) => {
-    //     user.savedItems.push(resource._id);
-    //     user.save();
-    //     console.log(user);
-    //   });
-    // })
+    .then((resource) => {
+      User.findById(req.user._id).then((user) => {
+        user.savedItems.push(resource._id);
+        user.save();
+        console.log(user);
+      });
+    })
     .then((resource) => {
       const user = req.user
       user.savedItems.push(resource._id)
