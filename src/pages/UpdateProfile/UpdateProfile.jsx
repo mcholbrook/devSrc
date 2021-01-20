@@ -50,7 +50,7 @@ class UpdateProfile extends Component {
       <>
         <h1>Update Profile</h1>
         <h4>Connect with your classmates</h4>
-        {this.props.profile._id ?
+        {this.props.profileId ?
         // Update Form 
         <div id="UserProfile" className="row">
           <form

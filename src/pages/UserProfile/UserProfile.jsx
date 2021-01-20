@@ -47,7 +47,7 @@ class UserProfile extends Component {
               pathname: "/UpdateProfile",
             }}
           >
-            Connect
+            Update
           </Link>
         </p>
       </>
