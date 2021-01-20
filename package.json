@@ -17,6 +17,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "react": "^16.13.1",
+    "react-card-flip": "^1.0.11",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
