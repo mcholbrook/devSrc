@@ -18,6 +18,12 @@ const useChat = (room) => {
       query: { room: room, user: user.name },
     });
 
+    socketRef.current.emit("register-user", user)
+
+    socketRef.current.on("update-chatter-list", (data) => {
+      setChatters((chatters) => [...data])
+    })
+
     socketRef.current.on(newChatMessageEvent, (message) => {
       const incomingMessage = {
         ...message,
@@ -40,7 +46,9 @@ const useChat = (room) => {
     });
   };
 
-  return { messages, sendMessage };
+  // const setChatters = ()
+
+  return { messages, sendMessage, chatters };
 
 
 
