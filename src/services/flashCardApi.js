@@ -10,17 +10,17 @@ export function create(flashcard) {
   .then(res => res.json());
 }
 
-export function getAll() {
-    return fetch(BASE_URL, {mode: 'cors'})
+export function getMyFlashCards(user) {
+    return fetch(`${BASE_URL}${user._id}`, {mode: 'cors'})
     .then(res => res.json())
 }
 
-export function deleteFlashCard(flashCard) {
-    console.log(flashCard)
+export function deleteFlashCard(flashCardId) {
+    console.log(flashCardId)
     return fetch(
-        `${BASE_URL}${flashCard}`,
+        `${BASE_URL}${flashCardId}`,
         {
-            method: "PUT",
+            method: "DELETE",
             headers: {
               "content-type": "application/json",
               Authorization: "Bearer " + tokenService.getToken(),
@@ -29,3 +29,4 @@ export function deleteFlashCard(flashCard) {
           { mode: "cors" }
         ).then((res) => res.json());
 }
+

@@ -4,11 +4,6 @@ const Schema = mongoose.Schema
 
 const SALT_ROUNDS = 6;
 
-const flashCardSchema = new Schema({
-  frontSide: String,
-  backSide: String,
-  tag: String
-}, {timestamps:true})
 
 const userSchema = new Schema({
   name: {type: String, required: true},
@@ -19,7 +14,7 @@ const userSchema = new Schema({
   linkedIn: String,
   website: String,
   savedItems: [{ type: Schema.Types.ObjectId, ref: 'Resource'}],
-  flashCards: [flashCardSchema]
+  flashCards: [{type: Schema.Types.ObjectId, ref: "FlashCard"}]
 }, {
   timestamps: true
 });

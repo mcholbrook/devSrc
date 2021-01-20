@@ -5,45 +5,58 @@
 // define functions for add, index, edit and delete
 
 const User = require("../models/user");
+const FlashCard = require("../models/FlashCard")
 
 module.exports = {
   index,
   create,
-  update,
+  updateCard,
   deleteCard
 }
 
 function index(req, res){
-  User.findById(req.user._id)
+  User.findById(req.params.id)
   .populate('flashCards')
-  .then((flashCards) => {res.json(flashCards)})
+  .then((user) => {
+    res.json(user)
+  })
   .catch((err) => {res.json(err)})
 }
 
 function create(req, res){
-  const flashCard = req.body
-  User.findById(req.user._id)
-  .then(user => {
-    user.flashCards.push(flashCard)
-    user.save()
+  req.body.creator = req.user._id
+  FlashCard.create(req.body)
+  .then((flashCard) => {
+    User.findById(req.user._id).then((user) => {
+      user.flashCards.push(flashCard._id)
+      user.save()
+    })
   })
-  .then((user) => res.json(user))
-
+  .then((flashCard) => {
+    res.json(flashCard)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 
 }
 
-function update(req, res){
-
+function updateCard(req, res){
+  FlashCard.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then((flashCard) => {
+    res.json(flashCard)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 }
 
 function deleteCard(req, res){
- 
-  User.findById(req.user._id)
-  .then((user) => {
-    console.log(user)
-    let idx = user.flashCards.findIndex((f) => f._id === req.params.id)
-    user.flashCards.splice(idx, 1)
-    user.save()
-    .then(() => res.json())
+  FlashCard.findByIdAndDelete(req.params.id)
+  .then((flashCard) => {
+    res.json(flashCard)
+  })
+  .catch((err) => {
+    res.json(err)
   })
 }
