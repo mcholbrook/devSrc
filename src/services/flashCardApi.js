@@ -14,3 +14,18 @@ export function getAll() {
     return fetch(BASE_URL, {mode: 'cors'})
     .then(res => res.json())
 }
+
+export function deleteFlashCard(flashCard) {
+    console.log(flashCard)
+    return fetch(
+        `${BASE_URL}${flashCard}`,
+        {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+              Authorization: "Bearer " + tokenService.getToken(),
+            },
+          },
+          { mode: "cors" }
+        ).then((res) => res.json());
+}

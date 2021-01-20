@@ -37,5 +37,13 @@ function update(req, res){
 }
 
 function deleteCard(req, res){
-
+ 
+  User.findById(req.user._id)
+  .then((user) => {
+    console.log(user)
+    let idx = user.flashCards.findIndex((f) => f._id === req.params.id)
+    user.flashCards.splice(idx, 1)
+    user.save()
+    .then(() => res.json())
+  })
 }

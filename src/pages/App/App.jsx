@@ -15,6 +15,8 @@ import FlashCardList from "../FlashCardList/FlashCardList";
 import AddNewNote from "../../components/AddNote/AddNote";
 import SearchResource from '../Search/Search'
 import * as noteAPI from '../../services/noteApi'
+import UserProfile from '../../pages/UserProfile/UserProfile'
+import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
 
 class App extends Component {
   state = {
@@ -24,6 +26,7 @@ class App extends Component {
     myResources: [],
     savedItems: [],
     notes: [],
+    searchResults: []
   };
 
   async componentDidMount() {
@@ -63,6 +66,13 @@ class App extends Component {
   //     () => this.props.history.push("/myNotebook")
   //   );
   // };
+
+  handleSearch = async (searchData) => {
+    const newSearch = await resourceAPI.search(searchData)
+    this.setState((state) => ({
+      searchResults: [...newSearch]
+    }))
+  }
 
   // addToSaved = id => {
   //   const newResource = this.state.resource.find(r => r._id === id);
@@ -137,9 +147,10 @@ class App extends Component {
         <Route
           exact
           path="/myNotebook"
-          render={() =>
+          render={({history}) =>
             authService.getUser() ? (
               <AddResource
+                history={history}
                 handleAddResource={this.handleAddResource}
                 myResources={this.state.myResources}
                 user={this.state.user}
@@ -163,9 +174,10 @@ class App extends Component {
         <Route
           exact
           path="/studyBuddy"
-          render={() =>
+          render={({history}) =>
             authService.getUser() ? (
               <FlashCardList
+                history={history}
                 flashCards={this.state.flashCards}
                 handleAddFlashCard={this.handleAddFlashCard}
                 user={this.state.user}
@@ -181,6 +193,8 @@ class App extends Component {
           path="/search"
           render={() => (
             <SearchResource
+            searchResults={this.state.searchResults}
+            handleSearch={this.handleSearch}
               user={this.state.user}
             />
           )}
@@ -195,6 +209,21 @@ class App extends Component {
           />
           }
         /> */}
+        <Route
+          exact
+          path="/myProfile"
+          render={() => (
+            <UserProfile/>
+          )}
+        />
+        <Route
+          exact
+          path="/UpdateProfile"
+          render={() => (
+            <UpdateProfile
+            />
+          )}
+          />
       </>
     );
   }

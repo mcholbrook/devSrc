@@ -12,7 +12,7 @@ PSEUDO CODE:
 
 */
 
-//import React from "react";
+
 import React, { Component } from 'react';
 import AddNote from '../../components/AddNote/AddNote'
 import * as resourceAPI from '../../services/resourceApi'
@@ -25,6 +25,7 @@ class ShowResource extends Component {
     resource: this.props.location.state.resource,
     notes: [...this.props.location.state.resource.notes]
    }
+
 
   // async componentDidMount() {
   //   const resource = await resourceAPI.getOne()
