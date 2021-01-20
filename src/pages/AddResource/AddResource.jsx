@@ -58,13 +58,6 @@ class AddResource extends Component {
     }))
   };
 
-  handleDeleteResource = async id => {
-	await resourceAPI.deleteFromSaved(id)
-	this.setState((state) => ({
-	  myResources: state.myResources.filter(r => r._id !== id)
-	}), () => this.props.history.push('/myNotebook'))
-  }
-
   handleChange = (e) => {
     const formData = {
       ...this.state.formData,
@@ -77,18 +70,6 @@ class AddResource extends Component {
       invalidForm: !this.formRef.current.checkValidity(),
     });
   };
-
-//   handleAddNote = async (addNoteToResource) => {
-//     const addNewNote = await resourceAPI.addNote(addNoteToResource)
-//     const newNoteArray = this.state.reasources.map((r) =>
-//     r._id === addNewNote._id ? addNewNote : r)
-//     this.setState ({resources: newNoteArray}, () => 
-//     this.props.history.push("/details"))
-//   }
-
-
-
-
 
   render() {
     return (
@@ -259,7 +240,7 @@ class AddResource extends Component {
         </div>
 		<ResourceList 
 			myResources={this.props.myResources}
-			handleDeleteResource= {this.handleDeleteResource}
+			handleDeleteResource= {this.props.handleDeleteResource}
             // handleAddNote={this.handleAddNote}
 			user= {this.props.user} />
       </>
