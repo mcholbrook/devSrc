@@ -33,7 +33,7 @@ class AddNote extends Component {
             <div className="comment box">
             <form ref={this.formRef} onSubmit={this.handleSubmit}>
             <input name="content" type="text" value={this.state.formData.note} onChange={this.handleChange}></input>
-            <input name='id' hidden value={this.state.formData.resourceId}></input>
+            <input name='id' hidden defaultValue={this.state.formData.resourceId}></input>
                 <button>Add Note</button>
             </form>
             </div>

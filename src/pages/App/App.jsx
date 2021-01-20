@@ -57,15 +57,15 @@ class App extends Component {
     );
   };
 
-  handleAddNote = async (newNoteData) => {
-    const newNote = await noteAPI.addNote(newNoteData);
-    this.setState(
-      (state) => ({
-        notes: [...state.notes, newNote]
-      }),
-      () => this.props.history.push("/myNotebook")
-    );
-  };
+  // handleAddNote = async (newNoteData) => {
+  //   const newNote = await noteAPI.addNote(newNoteData);
+  //   this.setState(
+  //     (state) => ({
+  //       notes: [...state.notes, newNote]
+  //     }),
+  //     () => this.props.history.push("/myNotebook")
+  //   );
+  // };
 
   handleSearch = async (searchData) => {
     const newSearch = await resourceAPI.search(searchData)
@@ -166,8 +166,7 @@ class App extends Component {
           render={({ location }) => (
             <ShowResource
               location={location}
-              handleAddNote={this.handleAddNote}
-              // addToSaved={this.addToSaved}
+              //handleAddNote={this.handleAddNote}
               user={this.state.user}
             />
           )}

@@ -7,12 +7,10 @@ module.exports = {
 function addNote(req, res) {
     Resource.findById(req.params.id)
     .then((resource) => {
-        console.log(resource)
-        console.log(req.body)
+        req.body.user = req.user._id
         resource.notes.push(req.body)
         resource.save()
-        console.log(resource)
+        res.json(resource)
     })
-        .then(resource => {res.json(resource)})
-        .catch(err => res.json(err))
+    .catch(err => res.json(err))
 }

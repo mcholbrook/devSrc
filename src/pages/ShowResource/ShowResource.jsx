@@ -15,12 +15,36 @@ PSEUDO CODE:
 
 import React, { Component } from 'react';
 import AddNote from '../../components/AddNote/AddNote'
+import * as resourceAPI from '../../services/resourceApi'
+import * as noteAPI from '../../services/noteApi'
+
 
 
 class ShowResource extends Component {
   state = { 
-    resource: this.props.location.state.resource
+    resource: this.props.location.state.resource,
+    notes: [...this.props.location.state.resource.notes]
    }
+
+
+  // async componentDidMount() {
+  //   const resource = await resourceAPI.getOne()
+  //   if (this.state.user) {
+  //     const myResources = await resourceAPI.getMyResources(this.state.user);
+  //     this.setState({ myResources: myResources.savedItems });
+  //   }
+  // }
+
+  handleAddNote = async (newNoteData) => {
+    console.log(newNoteData)
+    console.log(this.state)
+    const newNote = await noteAPI.addNote(newNoteData);
+    console.log(newNote)
+    this.setState(state => ({
+        notes: [...state.notes, newNote.notes[newNote.notes.length - 1]]
+      })
+    );
+  };
 
   render() { 
     const resource = this.props.location.state.resource;
@@ -31,7 +55,7 @@ class ShowResource extends Component {
         <p>Description: {resource.description}</p>
         <p>Tags: {resource.tag}</p>
         <a href={resource.url}>Go to Resource</a>
-          {resource.notes.map((note) =>(
+          {this.state.notes.map((note) =>(
               <div>Note: {note.content}</div>
           ))}
   
@@ -39,7 +63,7 @@ class ShowResource extends Component {
         <button>Upvote</button>
               <AddNote
               resource={resource}
-              handleAddNote={this.props.handleAddNote}
+              handleAddNote={this.handleAddNote}
               />
         </>
     )

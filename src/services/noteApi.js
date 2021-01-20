@@ -5,13 +5,9 @@ export function addNote(newNoteData) {
     return fetch(
       `${BASE_URL}${newNoteData.resourceId}`,
       {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          Authorization: "Bearer " + tokenService.getToken(),
-        },
-        body: JSON.stringify(newNoteData),
-      },
-      { mode: "cors" }
-    ).then((res) => res.json());
+        method: 'PUT',
+        headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+        body: JSON.stringify(newNoteData)
+      }, {mode: "cors"})
+      .then((res) => res.json())
   }
