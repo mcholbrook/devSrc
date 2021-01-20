@@ -7,27 +7,27 @@ const NavBar = ({ user, handleLogout }) => {
     <>
       {user ? (
         <nav>
-          <div className="nav-wrapper teal lighten-2" >
+          <div id="NavBarDiv" className="nav-wrapper teal lighten-2" >
             <ul id="nav-mobile" className="left hide-on-med-and-down">
-              <li className="nav-link">Welcome, {user.name}</li>
+              <li id="userName" className="nav-link">Welcome, {user.name}</li>
             </ul>
-            <ul className="right hide-on-med-and-down">
-            <li>
+            <ul id="NavBarList" className="right hide-on-med-and-down">
+            <li id="myNotebook">
               <a className="active" href="/myNotebook">MyNotebook</a>
             </li>
-            <li>
+            <li id="myNotebook">
               <a className="active" href="/search">Search</a>
             </li>
-            <li>
+            <li id="studyBuddy">
               <a className="active" href="/studyBuddy">Study Buddy</a>
             </li>
-            <li>
+            <li id="chat">
               <a className="active" href="/chat">Chat</a>
             </li>
-            <li>
+            <li id="myProfile">
               <a className="active" href="/myProfile">Profile</a>
             </li>
-            <li className="right">
+            <li id="logOut" className="right">
               <a className="active" href=" " onClick={handleLogout}>Log Out</a>
             </li>
             </ul>
