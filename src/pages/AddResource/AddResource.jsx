@@ -58,10 +58,10 @@ class AddResource extends Component {
     }))
   };
 
-  handleDeleteResource = async (id) => {
+  handleDeleteResource = async id => {
 	await resourceAPI.deleteFromSaved(id)
 	this.setState((state) => ({
-	  resources: state.resources.filter((r) => r._id !== id)
+	  myResources: state.myResources.filter(r => r._id !== id)
 	}), () => this.props.history.push('/myNotebook'))
   }
 

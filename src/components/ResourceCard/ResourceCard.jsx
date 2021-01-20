@@ -36,7 +36,7 @@ const ResourceCard = ({ resource, handleDeleteResource }) => {
           </Link>
           <button
             type="submit"
-            onClick={(resource) => handleDeleteResource(resource)}
+            onClick={() => handleDeleteResource(resource._id)}
           >
             Delete
           </button>

@@ -20,15 +20,15 @@ function create(req, res) {
       User.findById(req.user._id).then((user) => {
         user.savedItems.push(resource._id);
         user.save();
+        res.json(resource);
         console.log(user);
       });
     })
-    .then((resource) => {
-      const user = req.user
-      user.savedItems.push(resource._id)
-      user.save()
-      res.json(resource);
-    })
+    // .then((resource) => {
+    //   const user = req.user
+    //   user.savedItems.push(resource._id)
+    //   user.save()
+    // })
     .catch((err) => {
       res.json(err);
     });
@@ -96,12 +96,13 @@ function deleteResource(req, res) {
 
 // User can delete from collection
 function deleteFromSaved(req, res) {
-  User.findById(req.user._id).then((user) => {
+  User.findById(req.user._id)
+  .then((user) => {
     let idx = user.savedItems.findIndex((r) => r._id === req.params.id);
+    console.log(idx)
     console.log(user, user.savedItems);
     user.savedItems.splice(idx, 1);
-    user
-      .save()
+    user.save()
       .then(() => {
         res.json();
       })

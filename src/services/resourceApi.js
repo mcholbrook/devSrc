@@ -20,9 +20,9 @@ export function getAll() {
   return fetch(BASE_URL, { mode: "cors" }).then((res) => res.json());
 }
 
-export function deleteFromSaved(resource) {
+export function deleteFromSaved(resourceId) {
   return fetch(
-    `${BASE_URL}${resource._id}`,
+    `${BASE_URL}${resourceId}`,
     {
       method: "PUT",
       headers: {
