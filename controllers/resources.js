@@ -21,7 +21,7 @@ function create(req, res) {
         user.savedItems.push(resource._id);
         user.save();
         res.json(resource);
-        console.log(user);
+        //console.log(user);
       });
     })
     // .then((resource) => {
@@ -46,14 +46,14 @@ function index(req, res) {
 
 // Search a resource by text in the search bar
 function search(req, res) {
-    console.log(req.body)
+    //console.log(req.body)
   Resource.find({
     $text: {
       $search: `${req.body.queryString}`,
     },
   })
     .then((resource) => {
-        console.log(resource)
+        //console.log(resource)
       res.json(resource);
     })
     .catch((err) => {
@@ -98,17 +98,13 @@ function deleteResource(req, res) {
 function deleteFromSaved(req, res) {
   User.findById(req.user._id)
   .then((user) => {
-    let idx = user.savedItems.findIndex((r) => r._id === req.params.id);
-    console.log(idx)
-    console.log(user, user.savedItems);
+    let idx = user.savedItems.findIndex((r) => r == req.params.id)
     user.savedItems.splice(idx, 1);
     user.save()
-      .then(() => {
-        res.json();
-      })
-      .catch((err) => {
-        res.json(err);
-      });
+    res.json(user); 
+  })
+  .catch((err) => {
+    res.json(err);
   });
 }
 

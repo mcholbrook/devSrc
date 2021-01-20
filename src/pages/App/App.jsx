@@ -56,6 +56,13 @@ class App extends Component {
     );
   };
 
+  handleDeleteResource = async id => {
+    await resourceAPI.deleteFromSaved(id)
+    this.setState((state) => ({
+      myResources: state.myResources.filter(r => r._id !== id)
+    }), () => this.props.history.push('/myNotebook'))
+    }
+
   handleSearch = async (searchData) => {
     const newSearch = await resourceAPI.search(searchData)
     this.setState((state) => ({
@@ -121,6 +128,7 @@ class App extends Component {
               <AddResource
                 history={history}
                 handleAddResource={this.handleAddResource}
+                handleDeleteResource={this.handleDeleteResource}
                 myResources={this.state.myResources}
                 user={this.state.user}
               />
