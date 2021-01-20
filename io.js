@@ -4,7 +4,7 @@ const io = require('socket.io')({
   },
 })
 
-// let chatters = []
+let chatters = {}
 
 const newChatMessageEvent = "newChatMessage";
 
@@ -16,9 +16,16 @@ console.log(`Client ${socket.id} connected`);
 const { room } = socket.handshake.query;
 socket.join(room);
 // const {user} = socket.handshake.query
-// console.log(user)
-// chatters.push(user)
-// console.log(chatters)
+//  console.log(user)
+//  chatters[socket.id] = (user)
+//  console.log(chatters)
+
+//This is adding a new user to the chatters
+socket.on('register-user', (user) => {
+  chatters[socket.id] = user.name
+  console.log(chatters)
+  io.emit('update-chatter-list', Object.keys(chatters).map(id => chatters[id]))
+})
 
 // This is listening for new messages
 socket.on(newChatMessageEvent, (data) => {
@@ -28,6 +35,8 @@ socket.on(newChatMessageEvent, (data) => {
 // This is leaving the room if the user disconnects
 socket.on("disconnect", () => {
   console.log(`Client ${socket.id} diconnected`);
+  delete chatters[socket.id]
+  io.emit('update-chatter-list', Object.keys(chatters).map(id => chatters[id]))
   socket.leave(room);
 });
 });
