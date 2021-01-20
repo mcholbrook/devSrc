@@ -6,8 +6,25 @@ import * as flashCardAPI from '../../services/flashCardApi'
 
 class FlashCardList extends Component {
     state = {
-        flashCards: []
+        flashCards: [],
+        
     }
+
+    async componentDidMount() {
+        const flashCards = await flashCardAPI.getMyFlashCards(this.props.user)
+        this.setState({flashCards: flashCards.flashCards})
+    }
+
+    handleAddFlashCard = async (newFlashCardData) => {
+        const newFlashCard = await flashCardAPI.create(newFlashCardData);
+        console.log(newFlashCard)
+        this.setState(
+          (state) => ({
+            flashCards: [...state.flashCards, newFlashCard],
+          }),
+          () => this.props.history.push("/studyBuddy")
+        );
+      };
 
     handleDeleteFlashCard = async (id) => {
         await flashCardAPI.deleteFlashCard(id)
@@ -21,16 +38,18 @@ class FlashCardList extends Component {
         <>
         <div className='flashCardStack'>
             <FlashCardStack 
-                flashCards={this.props.user.flashCards}
+                flashCards={this.state.flashCards}
                 handleDeleteFlashCard={this.handleDeleteFlashCard}
+                user={this.props.user}
             />
         </div>
             <AddFlashcard 
-                handleAddFlashCard={this.props.handleAddFlashCard}
+                handleAddFlashCard={this.handleAddFlashCard}
+                user={this.props.user}
             />
         </>
          );
-    }
+        }
 }
  
 export default FlashCardList;

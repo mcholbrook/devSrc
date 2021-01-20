@@ -9,7 +9,9 @@ class AddFlashCard extends Component {
             frontSide: '',
             backSide: '',
             tag: ''
-        }
+        },
+        user: this.props.user,
+        
      }
 
     formRef = React.createRef()

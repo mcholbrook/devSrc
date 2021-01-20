@@ -22,7 +22,6 @@ class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
-    flashCards: [],
     myResources: [],
     savedItems: [],
     notes: [],
@@ -33,7 +32,7 @@ class App extends Component {
     // const resources = await resourceAPI.getAll()
     if (this.state.user) {
       const myResources = await resourceAPI.getMyResources(this.state.user);
-      this.setState({ myResources: myResources.savedItems });
+      this.setState({ myResources: myResources.savedItems});
     }
   }
 
@@ -84,15 +83,16 @@ class App extends Component {
   // )
   // }
 
-  handleAddFlashCard = async (newFlashCardData) => {
-    const newFlashCard = await flashCardAPI.create(newFlashCardData);
-    this.setState(
-      () => ({
-        flashCards: [newFlashCard.flashCards],
-      }),
-      () => this.props.history.push("/studyBuddy")
-    );
-  };
+  // handleAddFlashCard = async (newFlashCardData) => {
+  //   const newFlashCard = await flashCardAPI.create(newFlashCardData);
+  //   console.log(newFlashCard)
+  //   this.setState(
+  //     (state) => ({
+  //       flashCards: [...state.flashCards, newFlashCard],
+  //     }),
+  //     () => this.props.history.push("/studyBuddy")
+  //   );
+  // };
 
   render() {
     const { user } = this.state;

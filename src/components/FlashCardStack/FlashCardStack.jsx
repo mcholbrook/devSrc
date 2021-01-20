@@ -12,7 +12,7 @@ const FlashCardStack = (props) => {
                         frontSide={flashCard.frontSide}
                         backSide={flashCard.backSide}
                         user={props.user}
-                        key={flashCard._id}
+                        // key={flashCard._id}
                         handleDeleteFlashCard={props.handleDeleteFlashCard}
                     />
                     
