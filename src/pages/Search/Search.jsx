@@ -96,16 +96,17 @@ class SearchResources extends Component {
         </div>
 
         <div className="search-results">
-          {this.props.searchResults.map((result) => (
+          {this.props.searchResults.map((resource) => (
             <div class="card">
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
-                  <a href={result.url}>{result.title}</a>
+                  <a href={resource.url}>{resource.title}</a>
                 </span>
-                <p>Description: {result.description}</p>
+                <p>Description: {resource.description}</p>
                 <Link
                   to={{
                     pathname: "/details",
+                    state: {resource}
                   }}
                 >
                   Details
