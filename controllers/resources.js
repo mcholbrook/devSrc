@@ -10,7 +10,7 @@ module.exports = {
   deleteFromSaved,
   randomResources,
   index,
-  myResources,
+  mySavedItems,
   addToSaved
 };
 
@@ -48,7 +48,6 @@ function index(req, res) {
 
 // Search a resource by text in the search bar
 function search(req, res) {
-    //console.log(req.body)
   Resource.find({
     $text: {
       $search: `${req.body.queryString}`,
@@ -111,7 +110,7 @@ function deleteFromSaved(req, res) {
 }
 
 // My saved Resources
-function myResources(req, res) {
+function mySavedItems(req, res) {
   User.findById(req.params.id)
     .populate("savedItems")
     .then((user) => {
