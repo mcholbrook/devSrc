@@ -1,3 +1,4 @@
+const resource = require("../models/resource");
 const Resource = require("../models/resource");
 const User = require("../models/user");
 
@@ -9,7 +10,8 @@ module.exports = {
   deleteFromSaved,
   randomResources,
   index,
-  myResources,
+  mySavedItems,
+  addToSaved
 };
 
 // Create a resource from user profile
@@ -46,7 +48,6 @@ function index(req, res) {
 
 // Search a resource by text in the search bar
 function search(req, res) {
-    //console.log(req.body)
   Resource.find({
     $text: {
       $search: `${req.body.queryString}`,
@@ -109,10 +110,49 @@ function deleteFromSaved(req, res) {
 }
 
 // My saved Resources
-function myResources(req, res) {
+function mySavedItems(req, res) {
   User.findById(req.params.id)
     .populate("savedItems")
     .then((user) => {
       res.json(user);
     });
 }
+
+// function addToSaved(req, res){
+//   console.log(req.body)
+//   req.user.savedItems.push(req.body._id)
+//   req.user.save()
+//   .populate("savedItems")
+//   console.log(req.user)
+//   .then(() => {
+//     res.json()
+//   })
+//   .catch((err) => {
+//     res.json(err);
+//   })
+// }
+
+function addToSaved(req, res){
+  console.log(req.body)
+  User.findById(req.user._id)
+  .then((user) => {
+    user.savedItems.push(req.body._id)
+    user.save()
+    res.json(user)
+  })
+}
+
+// function addToSaved(req, res){
+//   let user = req.user
+//   console.log(req.body)
+//   user.savedItems.push(req.body._id)
+//   user.save()
+//   .populate("savedItems")
+//   console.log(user)
+//   .then(() => {
+//     res.json(req.user)
+//   })
+//   .catch((err) => {
+//     res.json(err)
+//   })
+// }

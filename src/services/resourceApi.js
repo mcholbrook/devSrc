@@ -34,8 +34,8 @@ export function deleteFromSaved(resourceId) {
   ).then((res) => res.json());
 }
 
-export function getMyResources(user) {
-  return fetch(`${BASE_URL}${user._id}/myResources`, {
+export function getMySavedItems(user) {
+  return fetch(`${BASE_URL}savedItems/${user._id}`, {
     mode: "cors",
   }).then((res) => res.json());
 }
@@ -55,4 +55,18 @@ export function search(queryString) {
       ).then((res) => res.json());
 }
 
+export function AddToSavedItems(resource) {
+  return fetch(
+      `${BASE_URL}/myResources`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          Authorization: "Bearer " + tokenService.getToken(),
+        },
+        body: JSON.stringify(resource)
+      },
+      { mode: "cors" }
+    ).then((res) => res.json());
+}
 

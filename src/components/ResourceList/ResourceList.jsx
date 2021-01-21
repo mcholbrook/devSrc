@@ -7,7 +7,7 @@ const ResourceList = (props) => {
     <>
     <h2 className="MySavedItems">My Saved Items</h2>
       <div className="saved-resources">
-        {props.myResources.map((resource) => (
+        {props.savedItems.map((resource) => (
           <ResourceCard
             handleDeleteResource={props.handleDeleteResource}
             // handleAddNote={props.handleAddNote}

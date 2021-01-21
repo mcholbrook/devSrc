@@ -3,12 +3,14 @@ const resourcesCtrl = require("../controllers/resources");
 
 // Protected Routes
 router.get("/", resourcesCtrl.index);
-router.get("/:id/myResources", resourcesCtrl.myResources);
+router.get("/savedItems/:id", resourcesCtrl.mySavedItems);
 router.use(require("../config/auth"));
 router.post("/", checkAuth, resourcesCtrl.create);
-router.put("/:id", checkAuth, resourcesCtrl.deleteFromSaved);
 router.get("/random", checkAuth, resourcesCtrl.randomResources);
 router.post("/search", checkAuth, resourcesCtrl.search);
+router.put("/myResources", checkAuth, resourcesCtrl.addToSaved)
+router.put("/:id", checkAuth, resourcesCtrl.deleteFromSaved);
+
 
 // Admin Routes
 router.put("/:id", checkAuth, resourcesCtrl.updateResource);

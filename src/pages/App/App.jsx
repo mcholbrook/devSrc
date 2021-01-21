@@ -17,22 +17,21 @@ import SearchResource from '../Search/Search'
 import * as noteAPI from '../../services/noteApi'
 import UserProfile from '../../pages/UserProfile/UserProfile'
 import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
+import userInfo from "../UserInfo/UserInfo";
 
 class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
-    myResources: [],
     savedItems: [],
     notes: [],
     searchResults: []
   };
 
   async componentDidMount() {
-    // const resources = await resourceAPI.getAll()
     if (this.state.user) {
-      const myResources = await resourceAPI.getMyResources(this.state.user);
-      this.setState({ myResources: myResources.savedItems});
+      const user = await resourceAPI.getMySavedItems(this.state.user);
+      this.setState({ savedItems: user.savedItems});
     }
   }
 
@@ -50,7 +49,7 @@ class App extends Component {
     const newResource = await resourceAPI.create(newResourceData);
     this.setState(
       (state) => ({
-        myResources: [...state.myResources, newResource],
+        savedItems: [...state.savedItems, newResource],
       }),
       () => this.props.history.push("/myNotebook")
     );
@@ -59,7 +58,7 @@ class App extends Component {
   handleDeleteResource = async id => {
     await resourceAPI.deleteFromSaved(id)
     this.setState((state) => ({
-      myResources: state.myResources.filter(r => r._id !== id)
+      savedItems: state.savedItems.filter(r => r._id !== id)
     }), () => this.props.history.push('/myNotebook'))
     }
 
@@ -69,6 +68,17 @@ class App extends Component {
       searchResults: [...newSearch]
     }))
   }
+
+  handleAddToSavedItems = async (resource) => {
+    const user = await resourceAPI.AddToSavedItems(resource)
+    this.setState((state) => ({
+      savedItems: [...state.savedItems, resource]
+    }),
+    () => this.props.history.push("/myNotebook")
+    )
+  }
+
+
 
   render() {
     const { user } = this.state;
@@ -119,7 +129,6 @@ class App extends Component {
             authService.getUser() ? <Chat /> : <Redirect to="/login" />
           }
         />
-        {/* <Route exact path="/chat" component={Chat} /> */}
         <Route
           exact
           path="/myNotebook"
@@ -129,7 +138,7 @@ class App extends Component {
                 history={history}
                 handleAddResource={this.handleAddResource}
                 handleDeleteResource={this.handleDeleteResource}
-                myResources={this.state.myResources}
+                savedItems={this.state.savedItems}
                 user={this.state.user}
               />
             ) : (
@@ -143,6 +152,8 @@ class App extends Component {
           render={({ location }) => (
             <ShowResource
               location={location}
+              searchResults={this.state.searchResults}
+              handleAddToSavedItems={this.handleAddToSavedItems}
               //handleAddNote={this.handleAddNote}
               user={this.state.user}
             />
@@ -172,20 +183,10 @@ class App extends Component {
             <SearchResource
             searchResults={this.state.searchResults}
             handleSearch={this.handleSearch}
-              user={this.state.user}
+            user={this.state.user}
             />
           )}
         />
-     
-        {/* <Route 
-          exact path='/myNotebook'
-          render={() => 
-          <ResourceList
-            resources={this.state.resources}
-            user={this.state.user}
-          />
-          }
-        /> */}
         <Route
           exact
           path="/myProfile"
