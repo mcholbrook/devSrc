@@ -26,9 +26,11 @@ const ResourceCard = ({ resource, handleDeleteResource }) => {
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">
             <a href={resource.url}>{resource.title}</a>
-            <i className="material-icons right">more_vert</i>
+            <i className="material-icons right"></i>
           </span>
-          <p>{resource.description}</p>
+         
+       
+       
           <Link to={{
             pathname: "/details",
             state: {resource}
