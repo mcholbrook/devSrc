@@ -17,21 +17,22 @@ import SearchResource from '../Search/Search'
 import * as noteAPI from '../../services/noteApi'
 import UserProfile from '../../pages/UserProfile/UserProfile'
 import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
+import userInfo from "../UserInfo/UserInfo";
 
 class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
     myResources: [],
-    savedItems: [],
+    //savedItems: [],
     notes: [],
     searchResults: []
   };
 
   async componentDidMount() {
     if (this.state.user) {
-      const myResources = await resourceAPI.getMyResources(this.state.user);
-      this.setState({ myResources: myResources.savedItems});
+      const user = await resourceAPI.getMyResources(this.state.user);
+      this.setState({ myResources: user.savedItems});
     }
   }
 
@@ -69,10 +70,10 @@ class App extends Component {
     }))
   }
 
-  handleAddToSavedItems = async (savedData) => {
-    const newSaved = await resourceAPI.AddToSavedItems(savedData)
+  handleAddToSavedItems = async (resource) => {
+    const user = await resourceAPI.AddToSavedItems(resource)
     this.setState((state) => ({
-      myResources: [...state.savedItems, newSaved]
+      myResources: [...state.myResources, resource]
     }),
     () => this.props.history.push("/myNotebook")
     )

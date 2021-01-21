@@ -119,14 +119,41 @@ function myResources(req, res) {
     });
 }
 
+// function addToSaved(req, res){
+//   console.log(req.body)
+//   req.user.savedItems.push(req.body._id)
+//   req.user.save()
+//   .populate("savedItems")
+//   console.log(req.user)
+//   .then(() => {
+//     res.json()
+//   })
+//   .catch((err) => {
+//     res.json(err);
+//   })
+// }
+
 function addToSaved(req, res){
-  req.user.savedItems.push(req.body)
-  .populate("savedItems")
-  req.user.save()
-  .then(() => {
-    res.json()
-  })
-  .catch((err) => {
-    res.json(err);
+  console.log(req.body)
+  User.findById(req.user._id)
+  .then((user) => {
+    user.savedItems.push(req.body._id)
+    user.save()
+    res.json(user)
   })
 }
+
+// function addToSaved(req, res){
+//   let user = req.user
+//   console.log(req.body)
+//   user.savedItems.push(req.body._id)
+//   user.save()
+//   .populate("savedItems")
+//   console.log(user)
+//   .then(() => {
+//     res.json(req.user)
+//   })
+//   .catch((err) => {
+//     res.json(err)
+//   })
+// }
