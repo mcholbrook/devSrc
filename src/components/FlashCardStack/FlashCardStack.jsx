@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import FlashCard from '../FlashCard/FlashCard'
+import './FlashCardStack.css'
 
 const FlashCardStack = (props) => {
         return ( 
             <>
-            <h2>Flash Cards</h2>
-            <div id='flashCardStack' className="row">
+            <div id='flashCardStack' className="flashCardStack">
                 {props.flashCards.map(flashCard => (
                     <FlashCard 
                         flashCard={flashCard}
