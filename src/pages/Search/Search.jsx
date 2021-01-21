@@ -35,12 +35,10 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 */
 
 import React, { Component } from "react";
-import ShowResource from "../ShowResource/ShowResource";
 
 import "./Search.css";
 
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 class SearchResources extends Component {
   state = {
@@ -48,11 +46,7 @@ class SearchResources extends Component {
     formData: {
       queryString: "",
     },
-
     results: [],
-
-    resources: [],
-
   };
 
   formRef = React.createRef();
@@ -89,38 +83,34 @@ class SearchResources extends Component {
                 ></input>
               </div>
             </div>
-            <button 
-            type="submit"
-            className="btn"
-            disabled={this.state.invalidForm}
-            >Submit</button>
+            <button
+              type="submit"
+              className="btn"
+              disabled={this.state.invalidForm}
+            >
+              Submit
+            </button>
           </form>
         </div>
         <div className="search-results">
-        {this.props.searchResults.map((result) => (
-          <div class="card">
-            {/* <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="/public/logo512.png" />
-            </div> */}
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">
-                <a href={result.url}>{result.title}</a>
-                {/* <i class="material-icons right">more_vert</i> */}
-              </span>
-              <p>Description: {result.description}</p>
+          {this.props.searchResults.map((result) => (
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                  <a href={result.url}>{result.title}</a>
+                </span>
+                <p>Description: {result.description}</p>
+                <Link
+                  to={{
+                    pathname: "/details",
+                  }}
+                >
+                  Details
+                </Link>
+              </div>
             </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">
-                Card Title<i class="material-icons right">close</i>
-              </span>
-              {/* <ShowResource 
-                  /> */}
-            </div>
-          </div>
-        ))}
-
+          ))}
         </div>
-
       </>
     );
   }
