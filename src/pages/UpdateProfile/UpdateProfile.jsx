@@ -19,20 +19,20 @@ class UpdateProfile extends Component {
     users: [],
     invalidForm: true,
     formData: {
-      github: "",
-      linkedIn: "",
-      website: "",
-      profileId: this.props.profile._id
+      github: this.props.user.github ? this.props.user.github : "",
+      linkedIn: this.props.user.linkedIn ? this.props.user.linkedIn : "",
+      website: this.props.user.website ? this.props.user.website : "",
+      profileId: this.props.user._id
     },
     
   };
 
   formRef = React.createRef();
 
-// handleSubmit = e => {
-//     e.preventDefault();
-//     this.props.handleAddPuppy(this.state.formData);
-// };
+  handleSubmit = e => {
+      e.preventDefault();
+      this.props.handleUpdateUser(this.state.formData);
+  };
 
   handleChange = (e) => {
     const formData = {
@@ -49,7 +49,6 @@ class UpdateProfile extends Component {
     return (
       <>
         <h1>Update Profile</h1>
-        <h4>Connect with your classmates</h4>
         {this.props.profileId ?
         // Update Form 
         <div id="UserProfile" className="row">

@@ -11,7 +11,8 @@ module.exports = {
   randomResources,
   index,
   mySavedItems,
-  addToSaved
+  addToSaved,
+  getUpdatedResource
 };
 
 // Create a resource from user profile
@@ -156,3 +157,8 @@ function addToSaved(req, res){
 //     res.json(err)
 //   })
 // }
+
+function getUpdatedResource(req, res){
+  Resource.findById(req.params.id)
+  .then((resource) => res.json(resource))
+}

@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+let blankForm = {
+  content: "",
+}
+
 class AddNote extends Component {
     state = {
         invalidForm: true,
@@ -14,6 +18,7 @@ class AddNote extends Component {
       handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleAddNote(this.state.formData);
+        this.setState({formData: {content: "", resourceId: this.props.resource._id}})
       };
     
       handleChange = (e) => {
@@ -32,7 +37,7 @@ class AddNote extends Component {
             <>
             <div className="comment box">
             <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <input name="content" type="text" value={this.state.formData.note} onChange={this.handleChange}></input>
+            <input name="content" type="text" value={this.state.formData.content} onChange={this.handleChange}></input>
             <input name='id' hidden defaultValue={this.state.formData.resourceId}></input>
                 <button>Add Note</button>
             </form>

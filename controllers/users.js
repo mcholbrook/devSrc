@@ -5,7 +5,7 @@ module.exports = {
   showMyProfile,
   update,
   show,
-
+  getUpdatedUser
 };
 
 function index(req, res) {
@@ -23,6 +23,7 @@ function showMyProfile(req, res){
 function update(req, res){
   User.findByIdAndUpdate(req.user._id, req.body, {new:true})
   .then((user) => {
+    console.log(user)
     res.json(user)
   })
 }
@@ -32,4 +33,9 @@ function show(req, res){
   .then((user) => {
     res.json(user)
   })
+}
+
+function getUpdatedUser(req, res){
+  User.findById(req.params.id)
+  .then((user) => res.json(user))
 }
