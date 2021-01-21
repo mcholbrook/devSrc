@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./AddNote.css"
 
 let blankForm = {
   content: "",
@@ -37,9 +38,13 @@ class AddNote extends Component {
           <>
           <div className="comment box">
           <form ref={this.formRef} onSubmit={this.handleSubmit}>
-          <input name="content" type="text" value={this.state.formData.content} onChange={this.handleChange}></input>
+          <div className="noteForm">
+            <input name="content" type="text" placeholder="Add A Note" value={this.state.formData.content} onChange={this.handleChange}></input>
+          </div>
           <input name='id' hidden defaultValue={this.state.formData.resourceId}></input>
-              <button>Add Note</button>
+              <button
+                className="btn grey lighten-1"
+              >Add Note</button>
           </form>
           </div>
           </>

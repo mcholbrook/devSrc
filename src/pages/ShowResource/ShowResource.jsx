@@ -48,39 +48,43 @@ class ShowResource extends Component {
   render() {
     const resource = this.props.location.state.resource;
     return (
-      <>
-           <div id="addResource" className="row">
+      <div className="showResource">
+        <div className="row resourceLeft">
           <a href={resource.url}>
-            <p className="resource-title">{resource.title}</p>
+            <h2 className="resource-title">{resource.title}</h2>
           </a>
           <div className="row">
             <p>Description: <br/>{resource.description}</p>
           </div>
           <div className="row">
             <p>Tags: <br />{resource.tag}</p>
+            <button
+              className="btn grey lighten-1"
+            >
+              <a href={resource.url}>Visit Site</a>
+            </button>
+                  <button
+                    className="btn"
+                    onClick={() => this.props.handleAddToSavedItems(resource)}
+                  >
+                    Save
+                  </button>
           </div>
-
-          <div className="row">
-
-            <div className="overflow-auto">
+      </div>
+      <div className="row resourceRight">
+          <div className="overflow-auto">
               {this.state.notes.map((note) => (
                 <div>
                   {note.userName}: {note.content}
                 </div>
               ))}
+            </div>
               <AddNote
                     resource={resource}
                     handleAddNote={this.handleAddNote}
                   />
-                  <button
-                    onClick={() => this.props.handleAddToSavedItems(resource)}
-                  >
-                    Save
-                  </button>
-            </div>
-          </div>
-        </div>
-      </>
+      </div>
+    </div>
     )
   }
 }
