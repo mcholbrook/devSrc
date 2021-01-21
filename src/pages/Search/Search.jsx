@@ -4,7 +4,7 @@ PSEUDOCODE
 FRONTEND FOR SEARCH FIELD
 
 -Import react (including component)
--Declare a class component, establish state with results: [], queryString: ''
+-Declare a className component, establish state with resources: [], queryString: ''
 -Add formRef = React.createRef() for form validation
 -Add standard handleSubmit(calling the handlSearch function passed via props) and handleChange functions (can copy and paste)
 -Render the form (only one field for the search query) and set onSubmit to be this.handleSubmit
@@ -14,17 +14,17 @@ BACKEND FOR SEARCH FIELD
 
 Routes - Will utilize the resources router at /search, check auth, and call resourcesCtrl.search
 
-Controllers - Creating a MongoDB text indexes to estabslish that you want to search for specific terms within strings and passing it title, Resource.find({}) using the Mongo $text and $search functions to search for keywords inside the title string, and then return results in a .json object.
+Controllers - Creating a MongoDB text indexes to estabslish that you want to search for specific terms within strings and passing it title, Resource.find({}) using the Mongo $text and $search functions to search for keywords inside the title string, and then return resources in a .json object.
 
 
 FRONTEND FOR TRENDING RESOURCES
 
--Before a user makes a search, render a certain number (6?) of randomly chosen resources for the "Trending Resources" section. When componentDidMount is true && results === [], perform a db fetch through resourcesAPI.getRandom 
--resourcesAPI.getRandom will fetch via the BASE_URL/search/random path and return those results to the search page
+-Before a user makes a search, render a certain number (6?) of randomly chosen resources for the "Trending Resources" section. When componentDidMount is true && resources === [], perform a db fetch through resourcesAPI.getRandom 
+-resourcesAPI.getRandom will fetch via the BASE_URL/search/random path and return those resources to the search page
 
 BACKEND FOR TRENDING RESOURCES
 
-Routes - Utilizes the resources router at /search/random, will check auth, and will call resourcesCtrl.randomSearch (need to differentiate because we will also need random results for the home page)
+Routes - Utilizes the resources router at /search/random, will check auth, and will call resourcesCtrl.randomSearch (need to differentiate because we will also need random resources for the home page)
 
 Controllers - will use .aggregate method to find random resources and pass them back in a .json object.
 
@@ -34,64 +34,81 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 
 */
 
-import React, { Component } from 'react';
-import ShowResource from '../ShowResource/ShowResource'
+import React, { Component } from "react";
+import ShowResource from "../ShowResource/ShowResource";
+import {Link} from 'react-router-dom'
 
 class SearchResources extends Component {
-    state = {
-        invalidForm: false,
-        formData: {
-            queryString: ''
-        },
-        results: [],
-    }
+  state = {
+    invalidForm: false,
+    formData: {
+      queryString: "",
+    },
+    resources: [],
+  };
 
-    formRef = React.createRef()
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.handleSearch(this.state.formData);
-      };
+  formRef = React.createRef();
 
-      handleChange = (e) => {
-        const formData = {
-          ...this.state.formData,
-          [e.target.name]: e.target.value,
-        };
-        this.setState({
-          formData,
-          invalidForm: !this.formRef.current.checkValidity(),
-        });
-      };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleSearch(this.state.formData);
+  };
 
-    render() { 
-        
-        return (
-            <>
-            <h1>This is the search page!</h1>
-            <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <input name='queryString' value={this.state.formData.queryString} onChange={this.handleChange}></input>
-            <button type="submit">Submit</button>
-            </form>
-            {this.props.searchResults.map((result) => (
-                <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="/public/logo512.png" />
+  handleChange = (e) => {
+    const formData = {
+      ...this.state.formData,
+      [e.target.name]: e.target.value,
+    };
+    this.setState({
+      formData,
+      invalidForm: !this.formRef.current.checkValidity(),
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <h1>This is the search page!</h1>
+        <form ref={this.formRef} onSubmit={this.handleSubmit}>
+          <input
+            name="queryString"
+            value={this.state.formData.queryString}
+            onChange={this.handleChange}
+          ></input>
+          <button type="submit">Submit</button>
+        </form>
+        {this.props.searchResults.map((resource) => (
+          <div className="card">
+            <div className="card-image waves-effect waves-block waves-light">
+              <img className="activator" src="/public/logo512.png" />
             </div>
-             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><a href={result.url}>{result.title}</a><i class="material-icons right">more_vert</i></span>
-                    <p>{result.description}</p>
+            <div className="card-content">
+              <span className="card-title activator grey-text text-darken-4">
+                <a href={resource.url}>{resource.title}</a>
+                <i className="material-icons right">more_vert</i>
+              </span>
+              <p>{resource.description}</p>
+              <Link
+                to={{
+                  pathname: "/details",
+                  state: { resource },
+                }}
+              >
+                Details
+              </Link>
             </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                  {/* <ShowResource 
+            <div className="card-reveal">
+              <span className="card-title grey-text text-darken-4">
+                Card Title<i className="material-icons right">close</i>
+              </span>
+              {/* <ShowResource 
                   /> */}
-             </div>
             </div>
-            ))}
-            </>
-        );
-    }
+          </div>
+        ))}
+      </>
+    );
+  }
 }
- 
+
 export default SearchResources;

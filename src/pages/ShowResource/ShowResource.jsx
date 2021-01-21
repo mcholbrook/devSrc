@@ -21,10 +21,10 @@ import * as noteAPI from '../../services/noteApi'
 
 
 class ShowResource extends Component {
-  state = { 
+  state = {
     resource: this.props.location.state.resource,
-    notes: [...this.props.location.state.resource.notes]
-   }
+    notes: [...this.props.location.state.resource.notes],
+  }
 
 
   // async componentDidMount() {
@@ -41,35 +41,38 @@ class ShowResource extends Component {
     const newNote = await noteAPI.addNote(newNoteData);
     console.log(newNote)
     this.setState(state => ({
-        notes: [...state.notes, newNote.notes[newNote.notes.length - 1]]
-      })
+      notes: [...state.notes, newNote.notes[newNote.notes.length - 1]]
+    })
     );
   };
 
-  render() { 
+
+
+  render() {
     const resource = this.props.location.state.resource;
     return (
       <>
-        
+
         <p>Title: {resource.title}</p>
         <p>Description: {resource.description}</p>
         <p>Tags: {resource.tag}</p>
         <a href={resource.url}>Go to Resource</a>
-          {this.state.notes.map((note) =>(
-              <div>Note: {note.content}</div>
-          ))}
+        {this.state.notes.map((note) => (
+          <div>Note: {note.content}</div>
+        ))}
   
-        <button>Save</button>
+
+        <button onClick={() => this.props.handleAddToSavedItems(resource)}>Save</button>
         <button>Upvote</button>
-              <AddNote
-              resource={resource}
-              handleAddNote={this.handleAddNote}
-              />
-        </>
+        <AddNote
+          resource={resource}
+          handleAddNote={this.handleAddNote}
+        />
+      </>
     )
   }
 }
- 
+
 export default ShowResource;
 
 
