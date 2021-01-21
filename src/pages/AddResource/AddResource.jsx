@@ -43,8 +43,7 @@ class AddResource extends Component {
       description: "",
       url: "",
       tag: "",
-    },
-    myResources: [...this.props.myResources],
+    }
   };
 
   formRef = React.createRef();
@@ -63,8 +62,6 @@ class AddResource extends Component {
       ...this.state.formData,
       [e.target.name]: e.target.value,
     };
-    console.log(this.state)
-    console.log(this.props.myResources)
     this.setState({
       formData,
       invalidForm: !this.formRef.current.checkValidity(),
@@ -74,8 +71,9 @@ class AddResource extends Component {
   render() {
     return (
       <>
-      <h2>Submit Resource</h2>
+      <h2>Resources</h2>
         <div id="addResource" className="row">
+          <h3>Submit Resource</h3>
           <form
             className="col s12"
             ref={this.formRef}
@@ -239,7 +237,7 @@ class AddResource extends Component {
           </form>
         </div>
 		<ResourceList 
-			myResources={this.props.myResources}
+			savedItems={this.props.savedItems}
 			handleDeleteResource= {this.props.handleDeleteResource}
             // handleAddNote={this.handleAddNote}
 			user= {this.props.user} />

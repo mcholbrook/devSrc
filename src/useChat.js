@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 import authService from './services/authService'
 
-const SOCKET_SERVER_URL = "http://localhost:3001";
+const SOCKET_SERVER_URL = "https://devsrc.herokuapp.com/";
 const newChatMessageEvent = "newChatMessage";
 
 const useChat = (room) => {

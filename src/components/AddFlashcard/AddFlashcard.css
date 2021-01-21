@@ -1,7 +1,7 @@
-#addResource {
+#AddFlashCard {
   background-color: #c5dedd;
   width: 70rem;
-  height: 33rem;
+  height: 28rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -11,11 +11,8 @@
   border-radius: 5px;
 }
 
-h2 {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-top: 75px;
+h3 {
+  font-size: 28px;
 }
 
 .col {

@@ -4,8 +4,8 @@ import FlashCard from '../FlashCard/FlashCard'
 const FlashCardStack = (props) => {
         return ( 
             <>
-            <h1>Flash Cards</h1>
-            <div className='flashCardStack'>
+            <h2>Flash Cards</h2>
+            <div id='flashCardStack' className="row">
                 {props.flashCards.map(flashCard => (
                     <FlashCard 
                         flashCard={flashCard}

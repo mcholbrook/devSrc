@@ -34,8 +34,8 @@ export function deleteFromSaved(resourceId) {
   ).then((res) => res.json());
 }
 
-export function getMyResources(user) {
-  return fetch(`${BASE_URL}${user._id}/myResources`, {
+export function getMySavedItems(user) {
+  return fetch(`${BASE_URL}savedItems/${user._id}`, {
     mode: "cors",
   }).then((res) => res.json());
 }

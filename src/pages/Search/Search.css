@@ -1,0 +1,61 @@
+#searching {
+  background-color: #c5dedd;
+  width: 70rem;
+  height: 15rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 75px;
+}
+
+.col {
+  width: 100%;
+  margin: 10px;
+  place-content: center;
+}
+
+.input-field {
+  background-color: white;
+  color: black;
+  margin: 0px;
+}
+
+.btn {
+  display: grid;
+  margin: 0 auto;
+}
+
+.search-results {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-width: 20rem;
+  width: 60rem;
+}
+
+.card-content {
+  display: grid;
+  justify-content: left;
+  align-content: center;
+  min-width: 20rem;
+  width: 60rem;
+}

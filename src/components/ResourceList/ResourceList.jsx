@@ -1,12 +1,13 @@
 import React from "react";
 import ResourceCard from "../../components/ResourceCard/ResourceCard";
+import './ResourceList.css'
 
 const ResourceList = (props) => {
   return (
     <>
-    <h2>My Saved Items:</h2>
+    <h2 className="MySavedItems">My Saved Items</h2>
       <div className="saved-resources">
-        {props.myResources.map((resource) => (
+        {props.savedItems.map((resource) => (
           <ResourceCard
             handleDeleteResource={props.handleDeleteResource}
             // handleAddNote={props.handleAddNote}

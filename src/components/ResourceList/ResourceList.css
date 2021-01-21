@@ -1,0 +1,8 @@
+.MySavedItems,
+.saved-resources {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-width: 20rem;
+    width: 100%;
+}
