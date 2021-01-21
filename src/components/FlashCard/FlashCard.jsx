@@ -1,41 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./FlashCard.css"
 
 
 function FlashCard({ frontSide, backSide, handleDeleteFlashCard, flashCard }) {
-        // const [ isFront, changeFace] = useState(true);
-        // function handleClick() {
-        //   changeFace( oldState => !oldState)
-        // }
-        // const text = isFront ? frontSide : backSide
-        // const sideClass = isFront ? "front" : "back"
-        // const classList = `flip-card-${sideClass}`
+        const [ isFront, changeFace] = useState(true);
+        function handleClick() {
+          changeFace( oldState => !oldState)
+        }
+        const text = isFront ? frontSide : backSide
+        const sideClass = isFront ? "front" : "back"
+        const classList = `flash-card ${sideClass}`
         return (
             <>
-              <div className="flip-card">
-                <div className="flip-card-inner">
-                  <div 
-                    className="flip-card-front"
-                    // onClick={handleClick}
-                  >
-                      {frontSide}
-                  </div>
-                  <div
-                    className="flip-card-back"
-                    // onClick={handleClick}
-                  >
-                    {backSide}
-                  </div>
+                <div 
+                  className={ classList } 
+                  onClick={handleClick}
+                >
+                    {text}
                 </div>
-              </div>
-                  <button
-                    type="submit"
-                    onClick={() => handleDeleteFlashCard(flashCard._id)}
-                    >
-                      Delete
-                    </button>
+                <button
+                  type="submit"
+                  onClick={() => handleDeleteFlashCard(flashCard._id)}
+                  >
+                    Delete
+                  </button>
             </>
-          
         )
     }
     
