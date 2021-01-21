@@ -30,21 +30,29 @@ const ResourceCard = ({ resource, handleDeleteResource }) => {
             {/* <i className="material-icons right">more_vert</i> */}
           </span>
           <p> Description: {resource.description}</p>
-          <Link
-            to={{
-              pathname: "/details",
-              state: { resource },
-            }}
-          >
-            Details
-          </Link>
-          <button
-            className="btn red lighten-2" 
-            type="submit"
-            onClick={() => handleDeleteResource(resource._id)}
-          >
-            Delete
-          </button>
+        </div>
+        <div className="buttons">
+          <div className="btn-div">
+            <button className="btn grey lighten-1">
+              <Link
+                to={{
+                  pathname: "/details",
+                  state: { resource },
+                }}
+              >
+                Details
+              </Link>
+            </button>
+          </div>
+          <div className="btn-div"> 
+            <button
+              className="btn red lighten-2"
+              type="submit"
+              onClick={() => handleDeleteResource(resource._id)}
+            >
+              Delete
+            </button>
+          </div>
         </div>
         {/* <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>

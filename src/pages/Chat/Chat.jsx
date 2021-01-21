@@ -32,7 +32,7 @@ const Chat = (props) => {
   return (
     <div>
       <h2>Chat</h2>
-      <div>
+      <div className="current-chatters">
         <div id="ChatUsers">
           <h3>Currently in room:</h3>
           <ul>
@@ -43,33 +43,41 @@ const Chat = (props) => {
         </div>
         <hr></hr>
       </div>
-      <div>
-        <ul>
-          {messages.map((message, i) => (
-            <li
-              key={i}
-              className={`message-item ${
-                message.sentByCurrentUser ? "my-message" : "received-message"
-              }`}
-            >
-              {message.name}:{message.body}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div id="chatting" className="row">
-        <div className="col">
-          <div className="row">
-            <div>
-              <textarea
-                className="input-field"
-                value={newMessage}
-                onChange={handleNewMessageChange}
-                placeholder="Send a message..."
-              />
-              <button 
-              className="btn"
-              onClick={handleSendMessage}>Send</button>
+      <div className="chat-section">
+        <div id="chatter-box">
+          <div className="col">
+            <div className="row">
+              <ul>
+                {messages.map((message, i) => (
+                  <li
+                    key={i}
+                    className={`message-item ${
+                      message.sentByCurrentUser
+                        ? "my-message"
+                        : "received-message"
+                    }`}
+                  >
+                    {message.name}:{message.body}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="chatting" className="row">
+          <div className="col">
+            <div className="row">
+              <div>
+                <textarea
+                  className="input-field"
+                  value={newMessage}
+                  onChange={handleNewMessageChange}
+                  placeholder="Send a message..."
+                />
+                <button className="btn" onClick={handleSendMessage}>
+                  Send
+                </button>
+              </div>
             </div>
           </div>
         </div>

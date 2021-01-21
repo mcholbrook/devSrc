@@ -39,8 +39,7 @@ import ShowResource from "../ShowResource/ShowResource";
 
 import "./Search.css";
 
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 class SearchResources extends Component {
   state = {
@@ -52,7 +51,6 @@ class SearchResources extends Component {
     results: [],
 
     resources: [],
-
   };
 
   formRef = React.createRef();
@@ -89,41 +87,103 @@ class SearchResources extends Component {
                 ></input>
               </div>
             </div>
-            <button 
-            type="submit"
-            className="btn"
-            disabled={this.state.invalidForm}
-            >Submit</button>
+            <button
+              type="submit"
+              className="btn"
+              disabled={this.state.invalidForm}
+            >
+              Submit
+            </button>
           </form>
         </div>
+
         <div className="search-results">
-        {this.props.searchResults.map((result) => (
-          <div class="card">
-            {/* <div class="card-image waves-effect waves-block waves-light">
+          {this.props.searchResults.map((result) => (
+            <div class="card">
+              {/* <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="/public/logo512.png" />
             </div> */}
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">
-                <a href={result.url}>{result.title}</a>
-                {/* <i class="material-icons right">more_vert</i> */}
-              </span>
-              <p>Description: {result.description}</p>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                  <a href={result.url}>{result.title}</a>
+                  {/* <i class="material-icons right">more_vert</i> */}
+                </span>
+                <p>Description: {result.description}</p>
+              </div>
+              {/* <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                  Card Title<i class="material-icons right">close</i>
+                </span>
+                <ShowResource 
+                  />
+              </div> */}
+              {/* <div className="buttons">
+                <div className="btn-div">
+                  <button className="btn grey lighten-1">
+                    <Link
+                      to={{
+                        pathname: "/details",
+                        state: { resource },
+                      }}
+                    >
+                      Details
+                    </Link>
+                  </button>
+                </div>
+              </div> */}
             </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">
-                Card Title<i class="material-icons right">close</i>
-              </span>
-              {/* <ShowResource 
-                  /> */}
-            </div>
-          </div>
-        ))}
-
+          ))}
         </div>
-
       </>
     );
   }
 }
 
 export default SearchResources;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <div className="card">
+        {/* <div className="card-image waves-effect waves-block waves-light">
+          <img className="activator" src="images/office.jpg" />
+        </div> */
+}
+// <div className="card-content">
+//   <span className="card-title activator grey-text text-darken-4">
+//     <a href={resource.url}>{resource.title}</a>
+//     {/* <i className="material-icons right">more_vert</i> */}
+//   </span>
+//   <p> Description: {resource.description}</p>
+// </div>
+// <div className="buttons">
+//   <div className="btn-div">
+//     <button className="btn grey lighten-1">
+//       <Link
+//         to={{
+//           pathname: "/details",
+//           state: { resource },
+//         }}
+//       >
+//         Details
+//       </Link>
+//     </button>
+//   </div>
+//   <div className="btn-div">
+//     <button
+//       className="btn red lighten-2"
+//       type="submit"
+//       onClick={() => handleDeleteResource(resource._id)}
+//     >
+//       Delete
+//     </button>
+//   </div>
+// </div>
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <div className="card-reveal">
+            <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div> */
+}
+// </div> */}
+
