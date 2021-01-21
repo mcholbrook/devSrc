@@ -57,22 +57,43 @@ class ShowResource extends Component {
     const resource = this.props.location.state.resource;
     return (
       <>
+           <div id="addResource" className="row">
+          <a href={resource.url}>
+            <p className="resource-title">{resource.title}</p>
+          </a>
+          <div className="row">
+            <p>Description: {resource.description}</p>
+          </div>
+          <div className="row">
+            <p>Tags: {resource.tag}</p>
+          </div>
 
-        <p>Title: {resource.title}</p>
-        <p>Description: {resource.description}</p>
-        <p>Tags: {resource.tag}</p>
-        <a href={resource.url}>Go to Resource</a>
-        {this.state.notes.map((note) => (
-          <div>{note.userName}: {note.content}</div>
-        ))}
-  
+          <div className="row">
+            <a href={resource.url}>Go to Resource</a>
+            {this.state.notes.map((note) => (
+              <div>
+                {note.userName}: {note.content}
+              </div>
+            ))}
 
-        <button onClick={() => this.props.handleAddToSavedItems(resource)}>Save</button>
-        <button>Upvote</button>
-        <AddNote
-          resource={resource}
-          handleAddNote={this.handleAddNote}
-        />
+            <div>
+              {this.state.notes.map((note) => (
+                <div>
+                  {note.userName}: {note.content}
+                </div>
+              ))}
+              <AddNote
+                    resource={resource}
+                    handleAddNote={this.handleAddNote}
+                  />
+                  <button
+                    onClick={() => this.props.handleAddToSavedItems(resource)}
+                  >
+                    Save
+                  </button>
+            </div>
+          </div>
+        </div>
       </>
     )
   }
