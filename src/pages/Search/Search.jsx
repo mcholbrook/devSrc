@@ -34,64 +34,86 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 
 */
 
-import React, { Component } from 'react';
-import ShowResource from '../ShowResource/ShowResource'
+import React, { Component } from "react";
+import ShowResource from "../ShowResource/ShowResource";
+import "./Search.css";
 
 class SearchResources extends Component {
-    state = {
-        invalidForm: false,
-        formData: {
-            queryString: ''
-        },
-        results: [],
-    }
+  state = {
+    invalidForm: false,
+    formData: {
+      queryString: "",
+    },
+    results: [],
+  };
 
-    formRef = React.createRef()
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.handleSearch(this.state.formData);
-      };
+  formRef = React.createRef();
 
-      handleChange = (e) => {
-        const formData = {
-          ...this.state.formData,
-          [e.target.name]: e.target.value,
-        };
-        this.setState({
-          formData,
-          invalidForm: !this.formRef.current.checkValidity(),
-        });
-      };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleSearch(this.state.formData);
+  };
 
-    render() { 
-        
-        return (
-            <>
-            <h1>This is the search page!</h1>
-            <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <input name='queryString' value={this.state.formData.queryString} onChange={this.handleChange}></input>
-            <button type="submit">Submit</button>
-            </form>
-            {this.props.searchResults.map((result) => (
-                <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="/public/logo512.png" />
+  handleChange = (e) => {
+    const formData = {
+      ...this.state.formData,
+      [e.target.name]: e.target.value,
+    };
+    this.setState({
+      formData,
+      invalidForm: !this.formRef.current.checkValidity(),
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <h2>Search Resources</h2>
+        <div id="searching" className="row">
+          <form className="col" ref={this.formRef} onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="input-field">
+                <input
+                  className="active"
+                  name="queryString"
+                  value={this.state.formData.queryString}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
             </div>
-             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><a href={result.url}>{result.title}</a><i class="material-icons right">more_vert</i></span>
-                    <p>{result.description}</p>
+            <button 
+            type="submit"
+            className="btn"
+            disabled={this.state.invalidForm}
+            >Submit</button>
+          </form>
+        </div>
+        <div className="search-results">
+        {this.props.searchResults.map((result) => (
+          <div class="card">
+            {/* <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="/public/logo512.png" />
+            </div> */}
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">
+                <a href={result.url}>{result.title}</a>
+                {/* <i class="material-icons right">more_vert</i> */}
+              </span>
+              <p>Description: {result.description}</p>
             </div>
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                  {/* <ShowResource 
+              <span class="card-title grey-text text-darken-4">
+                Card Title<i class="material-icons right">close</i>
+              </span>
+              {/* <ShowResource 
                   /> */}
-             </div>
             </div>
-            ))}
-            </>
-        );
-    }
+          </div>
+        ))}
+        </div>
+      </>
+    );
+  }
 }
- 
+
 export default SearchResources;

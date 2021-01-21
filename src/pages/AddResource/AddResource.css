@@ -6,9 +6,16 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin: 100px auto;
+  margin: 25px auto;
   padding: 30px;
   border-radius: 5px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 75px;
 }
 
 .col {
