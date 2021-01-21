@@ -14,9 +14,29 @@ hr {
   margin: 50px 50px;
 }
 
+.chat-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.message-item {
+  margin: 0 5rem;
+}
+
+.chatter-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+ul {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 #chatting {
   background-color: #c5dedd;
-  width: 70rem;
+  width: 70%;
   height: 12rem;
   display: flex;
   flex-flow: column nowrap;
@@ -25,6 +45,14 @@ hr {
   margin: 25px auto;
   padding: 30px;
   border-radius: 5px;
+}
+
+.my-message {
+  background-color: #c5dedd;
+}
+
+.received-message {
+  background-color: white;
 }
 
 .col {
@@ -42,12 +70,4 @@ hr {
 .btn {
   display: grid;
   margin: 10px auto;
-}
-
-.my-message {
-  background-color: blue;
-}
-
-.received-message {
-  background-color: greenyellow;
 }
