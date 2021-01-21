@@ -64,6 +64,7 @@ class FlashCard extends Component {
         <BackFlashCard 
           flashCard={this.props.flashCard}
           handleClick={this.handleClick}
+          handleDeleteFlashCard={this.props.handleDeleteFlashCard}
         />
       
       </ReactCardFlip>
