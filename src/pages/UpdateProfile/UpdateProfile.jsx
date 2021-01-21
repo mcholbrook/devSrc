@@ -24,7 +24,6 @@ class UpdateProfile extends Component {
       website: this.props.user.website ? this.props.user.website : "",
       profileId: this.props.user._id
     },
-    
   };
 
   formRef = React.createRef();
