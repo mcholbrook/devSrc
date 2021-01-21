@@ -70,11 +70,11 @@ class ShowResource extends Component {
 
           <div className="row">
             <a href={resource.url}>Go to Resource</a>
-            {this.state.notes.map((note) => (
+            {/* {this.state.notes.map((note) => (
               <div>
                 {note.userName}: {note.content}
               </div>
-            ))}
+            ))} */}
 
             <div>
               {this.state.notes.map((note) => (
