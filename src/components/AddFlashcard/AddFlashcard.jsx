@@ -9,7 +9,7 @@ class AddFlashCard extends Component {
     formData: {
       frontSide: "",
       backSide: "",
-      tag: "",
+      tag: [],
     },
     user: this.props.user,
   };
@@ -19,6 +19,9 @@ class AddFlashCard extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.handleAddFlashCard(this.state.formData);
+    this.setState({formData: {frontSide: "",
+    backSide: "",
+    tag: []}})
   };
 
   // handleDeleteFlashCard = async (id) => {
