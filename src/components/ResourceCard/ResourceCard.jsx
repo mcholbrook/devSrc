@@ -31,7 +31,7 @@ const ResourceCard = ({ resource, handleDeleteResource }) => {
           </span>
           <p> Description: {resource.description}</p>
         </div>
-        <div className="buttons">
+        <div className="resourceCardBtns">
           <div className="btn-div">
             <button className="btn grey lighten-1">
               <Link
