@@ -30,11 +30,12 @@ function create(req, res){
     User.findById(req.user._id).then((user) => {
       user.flashCards.push(flashCard._id)
       user.save()
+      res.json(flashCard)
     })
   })
-  .then((flashCard) => {
-    res.json(flashCard)
-  })
+  // .then((flashCard) => {
+  //   res.json(flashCard)
+  // })
   .catch((err) => {
     res.json(err)
   })
