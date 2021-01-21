@@ -1,13 +1,12 @@
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import useChat from "../../useChat";
 import "./Chat.css";
 
 const Chat = (props) => {
-  const { room } = 'chat';
+  const { room } = "chat";
   const { messages, sendMessage } = useChat(room);
   const [newMessage, setNewMessage] = useState("");
-  const {chatters, setChatters } = useChat(room)
+  const { chatters, setChatters } = useChat(room);
   // const [updatedChatters] = useState([])
 
   const handleNewMessageChange = (e) => {
@@ -24,24 +23,24 @@ const Chat = (props) => {
   //     if (idx % 2 === 1){
   //       updatedChatters.push(chatter)
   //       console.log('this is', updatedChatters)
-  //     } 
+  //     }
   //     })
   // }
-  
+
   // updateChatters()
-
-
 
   return (
     <div>
-      <h1>Chat</h1>
+      <h2>Chat</h2>
       <div>
-      <h3>Currently in room:</h3>
-        <ul>
-          {chatters.map((chatter, idx) => (
-           idx % 2 === 0 ? <li></li> : <li>{chatter}</li>
-          ))}
-        </ul>
+        <div id="ChatUsers">
+          <h3>Currently in room:</h3>
+          <ul>
+            {chatters.map((chatter, idx) =>
+              idx % 2 === 0 ? <li></li> : <li id="chatter">{chatter}</li>
+            )}
+          </ul>
+        </div>
         <hr></hr>
       </div>
       <div>
@@ -53,21 +52,28 @@ const Chat = (props) => {
                 message.sentByCurrentUser ? "my-message" : "received-message"
               }`}
             >
-              {message.name}: 
-              {message.body}
-              
+              {message.name}:{message.body}
             </li>
           ))}
         </ul>
       </div>
-      <textarea
-        value={newMessage}
-        onChange={handleNewMessageChange}
-        placeholder="Send a message..."
-      />
-      <button onClick={handleSendMessage}>
-        Send
-      </button>
+      <div id="chatting" className="row">
+        <div className="col">
+          <div className="row">
+            <div>
+              <textarea
+                className="input-field"
+                value={newMessage}
+                onChange={handleNewMessageChange}
+                placeholder="Send a message..."
+              />
+              <button 
+              className="btn"
+              onClick={handleSendMessage}>Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

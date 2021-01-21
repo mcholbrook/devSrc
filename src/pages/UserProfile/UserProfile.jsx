@@ -18,38 +18,46 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
-import UserInfo from '../UserInfo/UserInfo'
+import UserInfo from "../UserInfo/UserInfo";
 
 class UserProfile extends Component {
   state = {
-    user: []
+    user: [],
   };
 
   render() {
     return (
       <>
-        <h1>User Profile</h1>
-        <img src="http://theoldreader.com/kittens/320/240/" alt="" />
-        <p>Name: {this.state.user.name}</p>
-        <UserInfo />
-        <p>
-          <Link
-            to={{
-              pathname: "/UpdateProfile",
-            }}
-          >
-            Connect
-          </Link>
-        </p>
-        <p>
-          <Link
-            to={{
-              pathname: "/UpdateProfile",
-            }}
-          >
-            Update
-          </Link>
-        </p>
+        <h2>User Profile</h2>
+        <div id="userProfile" className="row">
+          <div id="avatarImg">
+            <img src="http://theoldreader.com/kittens/240/240/" alt="" />
+          </div>
+          <div className="col s12">
+            <div className="row">
+              <p>Name: {this.state.user.name}</p>
+              <UserInfo />
+              {/* <p>
+                <Link
+                  to={{
+                    pathname: "/UpdateProfile",
+                  }}
+                >
+                  Connect
+                </Link>
+              </p> */}
+              <p>
+                <Link
+                  to={{
+                    pathname: "/UpdateProfile",
+                  }}
+                >
+                  Update
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
       </>
     );
   }

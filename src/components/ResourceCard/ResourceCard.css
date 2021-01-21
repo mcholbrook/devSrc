@@ -1,0 +1,15 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-width: 20rem;
+    width: 60rem;
+}
+
+.card-content {
+    display: grid;
+    justify-content: left;
+    align-content: center;
+    min-width: 20rem;
+    width: 60rem;
+}

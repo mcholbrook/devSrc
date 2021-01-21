@@ -36,7 +36,11 @@ NOTES: must import resourcesAPI on App.js and pass handleSearch function to the 
 
 import React, { Component } from "react";
 import ShowResource from "../ShowResource/ShowResource";
+
+import "./Search.css";
+
 import {Link} from 'react-router-dom'
+
 
 class SearchResources extends Component {
   state = {
@@ -44,7 +48,11 @@ class SearchResources extends Component {
     formData: {
       queryString: "",
     },
+
+    results: [],
+
     resources: [],
+
   };
 
   formRef = React.createRef();
@@ -68,44 +76,51 @@ class SearchResources extends Component {
   render() {
     return (
       <>
-        <h1>This is the search page!</h1>
-        <form ref={this.formRef} onSubmit={this.handleSubmit}>
-          <input
-            name="queryString"
-            value={this.state.formData.queryString}
-            onChange={this.handleChange}
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
-        {this.props.searchResults.map((resource) => (
-          <div className="card">
-            <div className="card-image waves-effect waves-block waves-light">
-              <img className="activator" src="/public/logo512.png" />
+        <h2>Search Resources</h2>
+        <div id="searching" className="row">
+          <form className="col" ref={this.formRef} onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="input-field">
+                <input
+                  className="active"
+                  name="queryString"
+                  value={this.state.formData.queryString}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
             </div>
-            <div className="card-content">
-              <span className="card-title activator grey-text text-darken-4">
-                <a href={resource.url}>{resource.title}</a>
-                <i className="material-icons right">more_vert</i>
+            <button 
+            type="submit"
+            className="btn"
+            disabled={this.state.invalidForm}
+            >Submit</button>
+          </form>
+        </div>
+        <div className="search-results">
+        {this.props.searchResults.map((result) => (
+          <div class="card">
+            {/* <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="/public/logo512.png" />
+            </div> */}
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">
+                <a href={result.url}>{result.title}</a>
+                {/* <i class="material-icons right">more_vert</i> */}
               </span>
-              <p>{resource.description}</p>
-              <Link
-                to={{
-                  pathname: "/details",
-                  state: { resource },
-                }}
-              >
-                Details
-              </Link>
+              <p>Description: {result.description}</p>
             </div>
-            <div className="card-reveal">
-              <span className="card-title grey-text text-darken-4">
-                Card Title<i className="material-icons right">close</i>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                Card Title<i class="material-icons right">close</i>
               </span>
               {/* <ShowResource 
                   /> */}
             </div>
           </div>
         ))}
+
+        </div>
+
       </>
     );
   }

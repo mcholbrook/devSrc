@@ -71,8 +71,9 @@ class AddResource extends Component {
   render() {
     return (
       <>
-      <h2>Submit Resource</h2>
+      <h2>Resources</h2>
         <div id="addResource" className="row">
+          <h3>Submit Resource</h3>
           <form
             className="col s12"
             ref={this.formRef}
