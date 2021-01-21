@@ -19,11 +19,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
 import UserInfo from "../UserInfo/UserInfo";
+import * as userAPI from '../../services/userService'
 
 class UserProfile extends Component {
   state = {
-    user: [],
+    user: this.props.user,
   };
+
+  async componentDidMount() {
+      const user = await userAPI.getUser(this.props.user._id);
+      this.setState({ user: user})
+    }
+  
+
 
   render() {
     return (
@@ -36,7 +44,10 @@ class UserProfile extends Component {
           <div className="col s12">
             <div className="row">
               <p>Name: {this.state.user.name}</p>
-              <UserInfo />
+              <p>Github: {this.state.user.github}</p>
+              <p>LinkedIn: {this.state.user.linkedIn}</p>
+              <p>Website: {this.state.user.website}</p>
+              {/* <UserInfo /> */}
               {/* <p>
                 <Link
                   to={{
@@ -50,9 +61,12 @@ class UserProfile extends Component {
                 <Link
                   to={{
                     pathname: "/UpdateProfile",
+                    state: this.state.user
                   }}
                 >
-                  Update
+                  <button type="button">
+                    Update
+                  </button>
                 </Link>
               </p>
             </div>

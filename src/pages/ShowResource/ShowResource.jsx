@@ -35,13 +35,18 @@ class ShowResource extends Component {
   //   }
   // }
 
+  async componentDidMount() {
+    const resource = await resourceAPI.getResource(this.props.location.state.resource._id);
+    this.setState({notes: [...resource.notes]})
+  }
+
   handleAddNote = async (newNoteData) => {
     console.log(newNoteData)
     console.log(this.state)
-    const newNote = await noteAPI.addNote(newNoteData);
-    console.log(newNote)
+    const resource = await noteAPI.addNote(newNoteData);
+    console.log(resource)
     this.setState(state => ({
-      notes: [...state.notes, newNote.notes[newNote.notes.length - 1]]
+      notes: [...state.notes, resource.notes[resource.notes.length - 1]]
     })
     );
   };
@@ -58,7 +63,7 @@ class ShowResource extends Component {
         <p>Tags: {resource.tag}</p>
         <a href={resource.url}>Go to Resource</a>
         {this.state.notes.map((note) => (
-          <div>Note: {note.content}</div>
+          <div>{note.userName}: {note.content}</div>
         ))}
   
 

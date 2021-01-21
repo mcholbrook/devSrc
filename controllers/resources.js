@@ -11,7 +11,8 @@ module.exports = {
   randomResources,
   index,
   mySavedItems,
-  addToSaved
+  addToSaved,
+  getUpdatedResource
 };
 
 // Create a resource from user profile
@@ -23,14 +24,8 @@ function create(req, res) {
         user.savedItems.push(resource._id);
         user.save();
         res.json(resource);
-        //console.log(user);
       });
     })
-    // .then((resource) => {
-    //   const user = req.user
-    //   user.savedItems.push(resource._id)
-    //   user.save()
-    // })
     .catch((err) => {
       res.json(err);
     });
@@ -54,7 +49,6 @@ function search(req, res) {
     },
   })
     .then((resource) => {
-        //console.log(resource)
       res.json(resource);
     })
     .catch((err) => {
@@ -118,22 +112,7 @@ function mySavedItems(req, res) {
     });
 }
 
-// function addToSaved(req, res){
-//   console.log(req.body)
-//   req.user.savedItems.push(req.body._id)
-//   req.user.save()
-//   .populate("savedItems")
-//   console.log(req.user)
-//   .then(() => {
-//     res.json()
-//   })
-//   .catch((err) => {
-//     res.json(err);
-//   })
-// }
-
 function addToSaved(req, res){
-  console.log(req.body)
   User.findById(req.user._id)
   .then((user) => {
     user.savedItems.push(req.body._id)
@@ -142,17 +121,7 @@ function addToSaved(req, res){
   })
 }
 
-// function addToSaved(req, res){
-//   let user = req.user
-//   console.log(req.body)
-//   user.savedItems.push(req.body._id)
-//   user.save()
-//   .populate("savedItems")
-//   console.log(user)
-//   .then(() => {
-//     res.json(req.user)
-//   })
-//   .catch((err) => {
-//     res.json(err)
-//   })
-// }
+function getUpdatedResource(req, res){
+  Resource.findById(req.params.id)
+  .then((resource) => res.json(resource))
+}
