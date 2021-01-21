@@ -47,6 +47,8 @@ class SearchResources extends Component {
       queryString: "",
     },
     results: [],
+
+
   };
 
   formRef = React.createRef();
@@ -92,6 +94,7 @@ class SearchResources extends Component {
             </button>
           </form>
         </div>
+
         <div className="search-results">
           {this.props.searchResults.map((result) => (
             <div class="card">
@@ -108,6 +111,7 @@ class SearchResources extends Component {
                   Details
                 </Link>
               </div>
+
             </div>
           ))}
         </div>
@@ -117,3 +121,50 @@ class SearchResources extends Component {
 }
 
 export default SearchResources;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <div className="card">
+        {/* <div className="card-image waves-effect waves-block waves-light">
+          <img className="activator" src="images/office.jpg" />
+        </div> */
+}
+// <div className="card-content">
+//   <span className="card-title activator grey-text text-darken-4">
+//     <a href={resource.url}>{resource.title}</a>
+//     {/* <i className="material-icons right">more_vert</i> */}
+//   </span>
+//   <p> Description: {resource.description}</p>
+// </div>
+// <div className="buttons">
+//   <div className="btn-div">
+//     <button className="btn grey lighten-1">
+//       <Link
+//         to={{
+//           pathname: "/details",
+//           state: { resource },
+//         }}
+//       >
+//         Details
+//       </Link>
+//     </button>
+//   </div>
+//   <div className="btn-div">
+//     <button
+//       className="btn red lighten-2"
+//       type="submit"
+//       onClick={() => handleDeleteResource(resource._id)}
+//     >
+//       Delete
+//     </button>
+//   </div>
+// </div>
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <div className="card-reveal">
+            <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div> */
+}
+// </div> */}
+
