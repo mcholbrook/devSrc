@@ -2,11 +2,11 @@ const router = require('express').Router();
 const flashcardCtrl = require('../controllers/flashcards');
 
 
-router.post('/', checkAuth, flashcardCtrl.create)
 router.get('/:id', flashcardCtrl.index)
+router.use(require('../config/auth'));
+router.post('/', checkAuth, flashcardCtrl.create)
 router.delete('/:id', checkAuth, flashcardCtrl.deleteCard)
 router.put('/:id', checkAuth, flashcardCtrl.updateCard)
-router.use(require('../config/auth'));
 
 
 
