@@ -4,9 +4,10 @@ import '../FlashCard/FlashCard.css'
 const BackFlashCard = (props) => {
   return ( 
     <div className="flash-card back" onClick={props.handleClick}>
-      <p>{props.flashCard.backSide}</p>
+      {props.flashCard.backSide}
       <button
         type="submit"
+        className="btn"
         onClick={() => props.handleDeleteFlashCard(props.flashCard._id)}
 
         >
