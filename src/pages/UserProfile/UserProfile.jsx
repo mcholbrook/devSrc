@@ -19,7 +19,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
 import UserInfo from "../UserInfo/UserInfo";
-import * as userAPI from '../../services/userService'
+import * as userAPI from "../../services/userService";
 
 class UserProfile extends Component {
   state = {
@@ -27,11 +27,9 @@ class UserProfile extends Component {
   };
 
   async componentDidMount() {
-      const user = await userAPI.getUser(this.props.user._id);
-      this.setState({ user: user})
-    }
-  
-
+    const user = await userAPI.getUser(this.props.user._id);
+    this.setState({ user: user });
+  }
 
   render() {
     return (
@@ -47,28 +45,20 @@ class UserProfile extends Component {
               <p>Github: {this.state.user.github}</p>
               <p>LinkedIn: {this.state.user.linkedIn}</p>
               <p>Website: {this.state.user.website}</p>
-              {/* <UserInfo /> */}
-              {/* <p>
-                <Link
-                  to={{
-                    pathname: "/UpdateProfile",
-                  }}
-                >
-                  Connect
-                </Link>
-              </p> */}
-              <p>
-                <Link
-                  to={{
-                    pathname: "/UpdateProfile",
-                    state: this.state.user
-                  }}
-                >
-                  <button type="button">
-                    Update
+              <div className="buttons">
+                <div className="btn-div">
+                  <button className="btn grey lighten-1">
+                    <Link
+                      to={{
+                        pathname: "/UpdateProfile",
+                        state: this.state.user,
+                      }}
+                    >
+                      Update
+                    </Link>
                   </button>
-                </Link>
-              </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -78,6 +68,54 @@ class UserProfile extends Component {
 }
 
 export default UserProfile;
+
+// const ResourceCard = ({ resource, handleDeleteResource }) => {
+//   return (
+//     <>
+//       <div className="card">
+//         {/* <div className="card-image waves-effect waves-block waves-light">
+//           <img className="activator" src="images/office.jpg" />
+//         </div> */}
+//         <div className="card-content">
+//           <span className="card-title activator grey-text text-darken-4">
+//             <a href={resource.url}>{resource.title}</a>
+//             {/* <i className="material-icons right">more_vert</i> */}
+//           </span>
+//           <p> Description: {resource.description}</p>
+//         </div>
+//         <div className="buttons">
+//           <div className="btn-div">
+//             <button className="btn grey lighten-1">
+//               <Link
+//                 to={{
+//                   pathname: "/details",
+//                   state: { resource },
+//                 }}
+//               >
+//                 Details
+//               </Link>
+//             </button>
+//           </div>
+//           <div className="btn-div">
+//             <button
+//               className="btn red lighten-2"
+//               type="submit"
+//               onClick={() => handleDeleteResource(resource._id)}
+//             >
+//               Delete
+//             </button>
+//           </div>
+//         </div>
+//         {/* <div className="card-reveal">
+//             <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+//                 <p>Here is some more information about this product that is only revealed once clicked on.</p>
+//         </div> */}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default ResourceCard;
 
 // const UserProfile = ({ user }) => {
 //   return (
