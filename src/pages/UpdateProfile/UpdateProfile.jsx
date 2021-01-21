@@ -47,7 +47,7 @@ class UpdateProfile extends Component {
   render() {
     return (
       <>
-        <h1>Update Profile</h1>
+        <h2>Update Profile</h2>
         {this.props.profileId ?
         // Update Form 
         <div id="UserProfile" className="row">

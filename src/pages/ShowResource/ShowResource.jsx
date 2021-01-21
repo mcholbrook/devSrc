@@ -61,12 +61,8 @@ class ShowResource extends Component {
           </div>
 
           <div className="row">
-          <div className="overflow-auto">
-            {this.state.notes.map((note) => (
-                <p>{note.userName}: {note.content}</p>
-            ))}
-            </div>
-            <div>
+
+            <div className="overflow-auto">
               {this.state.notes.map((note) => (
                 <div>
                   {note.userName}: {note.content}

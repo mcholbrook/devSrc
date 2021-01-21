@@ -18,8 +18,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
-import UserInfo from "../UserInfo/UserInfo";
-import * as userAPI from '../../services/userService'
+//import UserInfo from "../UserInfo/UserInfo";
+import * as userAPI from "../../services/userService";
 
 class UserProfile extends Component {
   state = {
@@ -27,11 +27,9 @@ class UserProfile extends Component {
   };
 
   async componentDidMount() {
-      const user = await userAPI.getUser(this.props.user._id);
-      this.setState({ user: user})
-    }
-  
-
+    const user = await userAPI.getUser(this.props.user._id);
+    this.setState({ user: user });
+  }
 
   render() {
     return (
@@ -47,28 +45,20 @@ class UserProfile extends Component {
               <p>Github: {this.state.user.github}</p>
               <p>LinkedIn: {this.state.user.linkedIn}</p>
               <p>Website: {this.state.user.website}</p>
-              {/* <UserInfo /> */}
-              {/* <p>
-                <Link
-                  to={{
-                    pathname: "/UpdateProfile",
-                  }}
-                >
-                  Connect
-                </Link>
-              </p> */}
-              <p>
-                <Link
-                  to={{
-                    pathname: "/UpdateProfile",
-                    state: this.state.user
-                  }}
-                >
-                  <button type="button">
-                    Update
+              <div className="buttons">
+                <div className="btn-div">
+                  <button className="btn grey lighten-1">
+                    <Link
+                      to={{
+                        pathname: "/UpdateProfile",
+                        state: this.state.user,
+                      }}
+                    >
+                      Update
+                    </Link>
                   </button>
-                </Link>
-              </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -79,26 +69,4 @@ class UserProfile extends Component {
 
 export default UserProfile;
 
-// const UserProfile = ({ user }) => {
-//   return (
-//     <>
-//       <h1>User Profile</h1>
-//       <div id="avatar-img">
-//       <img src="http://theoldreader.com/kittens/320/240/" alt=""/>
-//       </div>
-//       <h2>{user.email}</h2>
-//       <p>
-//         <Link
-//           to={{
-//             pathname: "/UpdateProfile",
-//             state: { user },
-//           }}
-//         >
-//           Update Profile
-//         </Link>
-//       </p>
-//     </>
-//   );
-// };
 
-// export default UserProfile;

@@ -36,6 +36,10 @@ class FlashCardList extends Component {
     render() { 
         return ( 
         <>
+            <AddFlashcard 
+                handleAddFlashCard={this.handleAddFlashCard}
+                user={this.props.user}
+            />
         <div className='flashCardStack'>
             <FlashCardStack 
                 flashCards={this.state.flashCards}
@@ -43,10 +47,7 @@ class FlashCardList extends Component {
                 user={this.props.user}
             />
         </div>
-            <AddFlashcard 
-                handleAddFlashCard={this.handleAddFlashCard}
-                user={this.props.user}
-            />
+            
         </>
          );
         }
