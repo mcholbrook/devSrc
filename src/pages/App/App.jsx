@@ -23,16 +23,15 @@ class App extends Component {
   state = {
     user: authService.getUser(),
     resources: [],
-    myResources: [],
-    //savedItems: [],
+    savedItems: [],
     notes: [],
     searchResults: []
   };
 
   async componentDidMount() {
     if (this.state.user) {
-      const user = await resourceAPI.getMyResources(this.state.user);
-      this.setState({ myResources: user.savedItems});
+      const user = await resourceAPI.getMySavedItems(this.state.user);
+      this.setState({ savedItems: user.savedItems});
     }
   }
 
@@ -50,7 +49,7 @@ class App extends Component {
     const newResource = await resourceAPI.create(newResourceData);
     this.setState(
       (state) => ({
-        myResources: [...state.myResources, newResource],
+        savedItems: [...state.savedItems, newResource],
       }),
       () => this.props.history.push("/myNotebook")
     );
@@ -59,7 +58,7 @@ class App extends Component {
   handleDeleteResource = async id => {
     await resourceAPI.deleteFromSaved(id)
     this.setState((state) => ({
-      myResources: state.myResources.filter(r => r._id !== id)
+      savedItems: state.savedItems.filter(r => r._id !== id)
     }), () => this.props.history.push('/myNotebook'))
     }
 
@@ -73,7 +72,7 @@ class App extends Component {
   handleAddToSavedItems = async (resource) => {
     const user = await resourceAPI.AddToSavedItems(resource)
     this.setState((state) => ({
-      myResources: [...state.myResources, resource]
+      savedItems: [...state.savedItems, resource]
     }),
     () => this.props.history.push("/myNotebook")
     )
@@ -130,7 +129,6 @@ class App extends Component {
             authService.getUser() ? <Chat /> : <Redirect to="/login" />
           }
         />
-        {/* <Route exact path="/chat" component={Chat} /> */}
         <Route
           exact
           path="/myNotebook"
@@ -140,7 +138,7 @@ class App extends Component {
                 history={history}
                 handleAddResource={this.handleAddResource}
                 handleDeleteResource={this.handleDeleteResource}
-                myResources={this.state.myResources}
+                savedItems={this.state.savedItems}
                 user={this.state.user}
               />
             ) : (
@@ -185,20 +183,10 @@ class App extends Component {
             <SearchResource
             searchResults={this.state.searchResults}
             handleSearch={this.handleSearch}
-              user={this.state.user}
+            user={this.state.user}
             />
           )}
         />
-     
-        {/* <Route 
-          exact path='/myNotebook'
-          render={() => 
-          <ResourceList
-            resources={this.state.resources}
-            user={this.state.user}
-          />
-          }
-        /> */}
         <Route
           exact
           path="/myProfile"
