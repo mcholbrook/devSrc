@@ -9,6 +9,7 @@ router.post("/", checkAuth, resourcesCtrl.create);
 router.get("/random", checkAuth, resourcesCtrl.randomResources);
 router.post("/search", checkAuth, resourcesCtrl.search);
 router.put("/myResources", checkAuth, resourcesCtrl.addToSaved)
+router.get('/:id', checkAuth, resourcesCtrl.getUpdatedResource)
 router.put("/:id", checkAuth, resourcesCtrl.deleteFromSaved);
 
 

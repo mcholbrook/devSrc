@@ -18,6 +18,7 @@ import * as noteAPI from '../../services/noteApi'
 import UserProfile from '../../pages/UserProfile/UserProfile'
 import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
 import userInfo from "../UserInfo/UserInfo";
+import * as userAPI from '../../services/userService'
 
 class App extends Component {
   state = {
@@ -70,12 +71,19 @@ class App extends Component {
   }
 
   handleAddToSavedItems = async (resource) => {
-    const user = await resourceAPI.AddToSavedItems(resource)
+    const user = await resourceAPI.addToSavedItems(resource)
     this.setState((state) => ({
       savedItems: [...state.savedItems, resource]
     }),
     () => this.props.history.push("/myNotebook")
     )
+  }
+
+  handleUpdateUser = async (formData) => {
+    const user = await userAPI.updateUser(formData)
+    this.setState((state) => ({
+      user: user
+    }), () => this.props.history.push("/myProfile"))
   }
 
 
@@ -191,7 +199,9 @@ class App extends Component {
           exact
           path="/myProfile"
           render={() => (
-            <UserProfile/>
+            <UserProfile
+            user={this.state.user}
+            />
           )}
         />
         <Route
@@ -199,6 +209,8 @@ class App extends Component {
           path="/UpdateProfile"
           render={() => (
             <UpdateProfile
+              user={this.state.user}
+              handleUpdateUser={this.handleUpdateUser}
             />
           )}
           />

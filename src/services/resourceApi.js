@@ -20,6 +20,15 @@ export function getAll() {
   return fetch(BASE_URL, { mode: "cors" }).then((res) => res.json());
 }
 
+export function getResource(id){
+  return fetch(`${BASE_URL}${id}`,
+  {
+    headers: { Authorization: "Bearer " + tokenService.getToken() },
+  },
+  { mode: "cors" })
+  .then((res) => res.json())
+}
+
 export function deleteFromSaved(resourceId) {
   return fetch(
     `${BASE_URL}${resourceId}`,
@@ -55,7 +64,7 @@ export function search(queryString) {
       ).then((res) => res.json());
 }
 
-export function AddToSavedItems(resource) {
+export function addToSavedItems(resource) {
   return fetch(
       `${BASE_URL}/myResources`,
       {
