@@ -29,7 +29,6 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    // const resources = await resourceAPI.getAll()
     if (this.state.user) {
       const myResources = await resourceAPI.getMyResources(this.state.user);
       this.setState({ myResources: myResources.savedItems});
@@ -69,6 +68,17 @@ class App extends Component {
       searchResults: [...newSearch]
     }))
   }
+
+  handleAddToSavedItems = async (savedData) => {
+    const newSaved = await resourceAPI.AddToSavedItems(savedData)
+    this.setState((state) => ({
+      myResources: [...state.savedItems, newSaved]
+    }),
+    () => this.props.history.push("/myNotebook")
+    )
+  }
+
+
 
   render() {
     const { user } = this.state;
@@ -143,6 +153,8 @@ class App extends Component {
           render={({ location }) => (
             <ShowResource
               location={location}
+              searchResults={this.state.searchResults}
+              handleAddToSavedItems={this.handleAddToSavedItems}
               //handleAddNote={this.handleAddNote}
               user={this.state.user}
             />

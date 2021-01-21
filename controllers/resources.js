@@ -1,3 +1,4 @@
+const resource = require("../models/resource");
 const Resource = require("../models/resource");
 const User = require("../models/user");
 
@@ -10,6 +11,7 @@ module.exports = {
   randomResources,
   index,
   myResources,
+  addToSaved
 };
 
 // Create a resource from user profile
@@ -115,4 +117,16 @@ function myResources(req, res) {
     .then((user) => {
       res.json(user);
     });
+}
+
+function addToSaved(req, res){
+  req.user.savedItems.push(req.body)
+  .populate("savedItems")
+  req.user.save()
+  .then(() => {
+    res.json()
+  })
+  .catch((err) => {
+    res.json(err);
+  })
 }
