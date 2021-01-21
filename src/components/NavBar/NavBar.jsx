@@ -14,6 +14,7 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
+        <div class="navbar-fixed">
         <nav>
           <div id="NavBarDiv" className="nav-wrapper teal lighten-2" >
             {/* <ul id="nav-mobile" className="left hide-on-med-and-down">
@@ -63,24 +64,27 @@ const NavBar = ({ user, handleLogout }) => {
               <a className="active" href=" " onClick={handleLogout}>logOut</a></li>
         </ul>
         </nav>
+        </div>
 
       ) : (
-        <nav>
-          <div className="nav-wrapper teal lighten-2">
-            <ul id="nav-mobile" className="right">
-              <li>
-                <Link to="/login" className="nav-link">
-                  Log In
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <div class="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper teal lighten-2">
+              <ul id="nav-mobile" className="right">
+                <li>
+                  <Link to="/login" className="nav-link">
+                    Log In
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup" className="nav-link">
+                    Sign Up
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       )}
     </>
   );
