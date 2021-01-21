@@ -20,6 +20,7 @@ import UpdateProfile from '../../pages/UpdateProfile/UpdateProfile'
 import userInfo from "../UserInfo/UserInfo";
 import * as userAPI from '../../services/userService'
 
+
 class App extends Component {
   state = {
     user: authService.getUser(),
