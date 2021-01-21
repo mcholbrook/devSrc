@@ -14,12 +14,13 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
+        <div class="navbar-fixed">
         <nav>
           <div id="NavBarDiv" className="nav-wrapper teal lighten-2" >
             {/* <ul id="nav-mobile" className="left hide-on-med-and-down">
               <li id="userName" className="nav-link">Welcome, {user.name}</li>
             </ul> */}
-            <a href="#!" class="brand-logo">devSrc</a>
+            <a href="/" class="brand-logo">devSrc</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="NavBarList" className="right hide-on-med-and-down">
             <li id="myNotebook">
@@ -63,24 +64,27 @@ const NavBar = ({ user, handleLogout }) => {
               <a className="active" href=" " onClick={handleLogout}>logOut</a></li>
         </ul>
         </nav>
+        </div>
 
       ) : (
-        <nav>
-          <div className="nav-wrapper teal lighten-2">
-            <ul id="nav-mobile" className="right">
-              <li>
-                <Link to="/login" className="nav-link">
-                  Log In
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <div class="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper teal lighten-2">
+              <ul id="nav-mobile" className="right">
+                <li>
+                  <Link to="/login" className="nav-link">
+                    Log In
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup" className="nav-link">
+                    Sign Up
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       )}
     </>
   );
