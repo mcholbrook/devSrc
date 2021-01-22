@@ -21,7 +21,7 @@ const NavBar = ({ user, handleLogout }) => {
               <li id="userName" className="nav-link">Welcome, {user.name}</li>
             </ul> */}
 
-            <a href="#" className="brand-logo">devSrc</a>
+            <a href="/" className="brand-logo">devSrc</a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
             <ul id="NavBarList" className="right hide-on-med-and-down davidsNavBar">
 

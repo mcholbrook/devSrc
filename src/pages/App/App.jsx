@@ -103,7 +103,6 @@ class App extends Component {
                 <div id="intro">
                   <h2>Welcome to devSrc,</h2>
                   <h4>a resource sharing app for Software Engineers.</h4>
-                  <img alt="logo" src="/public/images/devSrcLogo.png"/>
                 </div>
                 
               </div>
