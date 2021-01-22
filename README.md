@@ -12,13 +12,13 @@ Added functionality brings in our studyBuddy component to cut down on learning c
 ### Screenshots: 
 
 
-![myNotebook]("https://i.imgur.com/KcROtYd.png")
+![myNotebook](https://i.imgur.com/KcROtYd.png)
 
-![searchSrc]("https://i.imgur.com/y3aHhTO.png")
+![searchSrc](https://i.imgur.com/y3aHhTO.png)
 
-![studyBuddy]("https://i.imgur.com/N7FAL5M.png")
+![studyBuddy](https://i.imgur.com/N7FAL5M.png)
 
-![liveChat]("https://i.imgur.com/RXLLYLm.png")
+![liveChat](https://i.imgur.com/RXLLYLm.png)
 
 
 ### Get Started: [Visit devSrc app](https://devsrc.herokuapp.com/)
