@@ -18,6 +18,24 @@ main {
   width: 50rem;
   display: inline-block;
   margin: auto;
-  margin-top: 10rem;
   padding: 10px;
+}
+
+.landing-container {
+  width: 50rem;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 60px;
+  color: teal;
+}
+
+.logo {
+  height: 24rem;
+  width: 24rem;
 }
