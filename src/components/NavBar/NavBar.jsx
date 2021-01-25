@@ -17,10 +17,6 @@ const NavBar = ({ user, handleLogout }) => {
         <div className="navbar-fixed">
         <nav>
           <div id="NavBarDiv" className="nav-wrapper teal lighten-2" >
-            {/* <ul id="nav-mobile" className="left hide-on-med-and-down">
-              <li id="userName" className="nav-link">Welcome, {user.name}</li>
-            </ul> */}
-
             <a href="/" className="brand-logo">devSrc</a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
             <ul id="NavBarList" className="right hide-on-med-and-down davidsNavBar">

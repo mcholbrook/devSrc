@@ -9,11 +9,9 @@ const BackFlashCard = (props) => {
         type="submit"
         className="btn"
         onClick={() => props.handleDeleteFlashCard(props.flashCard._id)}
-
-        >
-          Delete
-        </button>
-
+      >
+        Delete
+      </button>
     </div>
    );
 }

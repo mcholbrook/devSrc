@@ -104,7 +104,6 @@ class App extends Component {
                   <h2>Welcome to devSrc,</h2>
                   <h4>a resource sharing app for Software Engineers.</h4>
                 </div>
-                
               </div>
             </main>
           )}
@@ -187,7 +186,6 @@ class App extends Component {
             )
           }
         />
-
         <Route
           exact
           path="/search"

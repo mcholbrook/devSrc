@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import "./AddNote.css"
 
-let blankForm = {
-  content: "",
-}
-
 class AddNote extends Component {
   state = {
       invalidForm: true,
@@ -51,7 +47,5 @@ class AddNote extends Component {
       );
   }
 }
- 
-
-   
-  export default AddNote;
+  
+export default AddNote;
